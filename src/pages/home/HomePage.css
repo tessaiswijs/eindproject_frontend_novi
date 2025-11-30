@@ -40,37 +40,7 @@ Table of Contents:
     text-align: center;
 }
 
-.steps{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 2rem;
-}
 
-.steps img{
-    width: 50px;
-    margin-left: 3.5rem;
-}
-
-.step-text span{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    color: white;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-}
-
-.step-text{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
 /*////////////////////////
     1. Selection of recipes

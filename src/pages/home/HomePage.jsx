@@ -2,6 +2,7 @@ import {useNavigate} from 'react-router-dom';
 import './HomePage.css';
 import RecipeCard from '../../components/recipeCard/RecipeCard.jsx';
 import Button from '../../components/button/Button.jsx';
+import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
 
 function Home() {
     const navigate = useNavigate();
@@ -20,23 +21,42 @@ function Home() {
 
 
                 <ol className="header-section">
+
                     <li className="steps">
-                        <img src="/src/assets/quiz_icon.png" alt="quiz icon"/>
-                        <p className="step-text"><span>1</span>Doe de quiz</p>
-                    </li>
-                    <li className="steps">
-                        <img src="/src/assets/cooking_icon.png" alt="pan icoon"/>
-                        <p className="step-text"><span>2</span>Kies je recepten</p>
-                    </li>
-                    <li className="steps">
-                        <img src="/src/assets/weekplan_icon.png" alt="planning icoon"/>
-                        <p className="step-text"><span>3</span>Voeg de recepten toe</p>
-                    </li>
-                    <li className="steps">
-                        <img src="/src/assets/list_icon.png" alt="lijst icoon"/>
-                        <p className="step-text"><span>4</span>Maak je boodschappenlijst</p>
+                        <MealplanSteps
+                            image="/src/assets/quiz_icon.png"
+                            altText="quiz icoon"
+                            step={1}
+                            text="Doe de quiz"
+                        />
                     </li>
 
+                    <li className="steps">
+                        <MealplanSteps
+                            image="/src/assets/cooking_icon.png"
+                            altText="pan icoon"
+                            step={2}
+                            text="Kies je recept"
+                        />
+                    </li>
+
+                    <li className="steps">
+                        <MealplanSteps
+                            image="/src/assets/weekplan_icon.png"
+                            altText="planning icoon"
+                            step={3}
+                            text="Voeg je recepten toe"
+                        />
+                    </li>
+
+                    <li className="steps">
+                        <MealplanSteps
+                            image="/src/assets/list_icon.png"
+                            altText="lijst icoon"
+                            step={4}
+                            text="Maak je boodschappenlijst"
+                        />
+                    </li>
                 </ol>
 
                 <Button
