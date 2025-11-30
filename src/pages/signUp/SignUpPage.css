@@ -1,0 +1,82 @@
+.sign-up-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-container {
+    text-align: center;
+    background: #F4F1EB;
+    max-width: 40rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 5rem;
+}
+
+.signup-header-section img {
+    width: 4rem;
+}
+
+.signup-header-section h1 {
+    margin-bottom: 2rem;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin: 5rem;
+    box-sizing: inherit;
+    align-items: center;
+}
+
+/*.label-form {*/
+/*    display: block;*/
+/*}*/
+
+.form-button {
+    margin: 2rem;
+}
+
+.registration-signup-button-container {
+    display: flex;
+    width: 100%;
+    max-width: 630px;
+    margin: 0 auto;
+}
+
+.registration-signup-button-container button {
+    background-color: white;
+    padding: 5px 5px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #D8B35D;
+    border-radius: 0;
+    text-align: left;
+    margin: 0.5rem;
+    flex: 1 1 auto;
+}
+
+.registration-signup-button-container button:hover {
+    border-bottom-color: #D8B35D;
+}
+
+.registration-signup-button-container .login-button {
+    border: none;
+    border-bottom: 2px solid white;
+}
+
+.registration-signup-button-container .registration-button {
+    border: none;
+    border-bottom: 2px solid #D8B35D;
+}
+
+.label-form span {
+    padding-left: 0.2rem;
+    color: #D8B35D;
+    font-weight: bold;
+}
+
+

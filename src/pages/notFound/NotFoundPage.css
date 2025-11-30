@@ -1,0 +1,11 @@
+.page-container-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 21rem;
+}
+
+.page-container-not-found h2 {
+    padding-bottom: 2rem;
+}
+

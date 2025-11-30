@@ -1,0 +1,101 @@
+/*////////////////////////////////////////////////////////////////////////
+Table of Contents:
+    1. Page header
+    2. Selection of recipes
+////////////////////////////////////////////////////////////////////////*/
+
+/*////////////////////////
+    1. Page header
+////////////////////////*/
+
+.page-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F4F1EB;
+    padding: 50px 0;
+}
+
+.title-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-section{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+.header_text{
+    width: 60%;
+    margin: 2rem;
+    text-align: center;
+}
+
+.steps{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 2rem;
+}
+
+.steps img{
+    width: 50px;
+    margin-left: 3.5rem;
+}
+
+.step-text span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.step-text{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/*////////////////////////
+    1. Selection of recipes
+////////////////////////*/
+
+/*
+Title section
+*/
+
+.recipe-header-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    text-align: center;
+}
+
+.title_recipe-header{
+    margin-bottom: 3rem;
+}
+
+/*
+Article section
+*/
+
+
+
+

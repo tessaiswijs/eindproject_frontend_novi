@@ -1,0 +1,56 @@
+/*////////////////////////////////////////////////////////////////////////
+Table of Contents:
+    1. Global Styles
+    2. Typografie
+    3. Areas
+        3.1 Header
+        3.2 Testimonial
+        3.3 Support
+        3.4 Faq
+        3.5 Footer
+////////////////////////////////////////////////////////////////////////*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;500;700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@100;200;300;400;500;600;700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Kadwa:wght@400;700&display=swap');*/
+
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;500;700&family=Kantumruy+Pro:wght@100;200;300;400;500;600;700&family=Kadwa:wght@400;700&display=swap');
+
+/*////////////////////////
+    1. Global Styles
+////////////////////////*/
+
+
+
+/*////////////////////////
+    2. Typography
+////////////////////////*/
+
+body{
+    font-family: "Kantumruy pro", Georgia, sans-serif;
+    font-size: 1.1rem;
+}
+
+h1{
+    font-family: "Kaisei Tokumin", "Times New Roman", Times, sans-serif;
+    font-size: 3rem;
+    text-align: center;
+}
+
+h2{
+    font-family: "Kaisei Tokumin", "Times New Roman", Times, sans-serif;
+    font-size: 2rem;
+}
+
+h3{
+    font-family: "Kaisei Tokumin", "Times New Roman", Times, serif;
+    font-size: 1.1rem;
+}
+
+h4{
+    font-family: "Kadwa", "Times New Roman", Times, sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+

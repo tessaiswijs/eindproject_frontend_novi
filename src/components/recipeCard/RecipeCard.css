@@ -1,0 +1,56 @@
+.recipe-article-section {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.yellow-logo-container {
+    width: 8rem;
+    margin: 2rem;
+}
+
+.recipe-image {
+    width: 15rem;
+}
+
+.recipe-title {
+    margin: 1rem 0.3rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #D8B35D;
+}
+
+.detail-icon {
+    width: 1.2rem;
+    margin-inline: 0.3rem;
+}
+
+.cooking-time {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.kcal-info {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.3rem;
+}
+
+.recipe-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #F4F1EB;
+    border-radius: 25px 0 25px 25px;
+    overflow: hidden;
+}
+
+.recipe-specification {
+    text-align: center;
+    max-width: 140px;
+}

@@ -1,0 +1,70 @@
+nav {
+    background-color: #27592E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.logo-container-navbar {
+    display: flex;
+    flex-grow: 5;
+    margin-left: 2rem;
+}
+
+.logo-container-navbar img {
+    width: 7rem;
+}
+
+.page-navigation {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 2;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+}
+
+.page-navigation li {
+    margin: 0.5rem 1rem;
+    list-style: none;
+}
+
+nav ul a,
+nav ul a:visited,
+nav ul a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.default-link {
+    border-bottom: 1px solid transparent;
+}
+
+.active-link {
+    border-bottom: 1px solid white;
+}
+
+.button-container {
+    margin-right: 1.5rem;
+}
+
+.inlog-button {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.recipe-counter{
+    position: relative;
+    bottom: 1rem;
+    left: 0.3rem;
+    color: white;
+    font-size: 0.8rem;
+    border: 1px solid white;
+    padding: 0.1rem;
+}
