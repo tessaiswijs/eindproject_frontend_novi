@@ -72,7 +72,7 @@ function Home() {
             <main>
 
                 <section className="recipe-header-section">
-                    <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="klok"/>
+                    <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
 
                     <h2 className="title_recipe-header">
                         Een selectie van onze recepten
