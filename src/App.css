@@ -26,23 +26,23 @@ Table of Contents:
     2. Typography
 ////////////////////////*/
 
-body{
+body, label, p {
     font-family: "Kantumruy pro", Georgia, sans-serif;
     font-size: 1.1rem;
 }
 
-h1{
+h1 {
     font-family: "Kaisei Tokumin", "Times New Roman", Times, sans-serif;
     font-size: 3rem;
     text-align: center;
 }
 
-h2{
+h2, legend {
     font-family: "Kaisei Tokumin", "Times New Roman", Times, sans-serif;
     font-size: 2rem;
 }
 
-h3{
+h3  {
     font-family: "Kaisei Tokumin", "Times New Roman", Times, serif;
     font-size: 1.1rem;
 }

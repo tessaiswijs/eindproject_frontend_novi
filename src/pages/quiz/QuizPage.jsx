@@ -15,9 +15,15 @@ function Quiz() {
     return (
         <>
             <main className="quiz-container">
-                <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="klok"/>
 
-                <h1>Welke recepten vind je lekker?</h1>
+               <section className="quiz-header-container">
+
+                   <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="klok"/>
+
+                   <h1>Welke recepten vind je lekker?</h1>
+
+               </section>
+
 
 
                 <form>

@@ -1,0 +1,40 @@
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: fit-content;
+    border-radius: 25px 0 25px 25px;
+    overflow: hidden;
+    background: #F4F1EB;
+    padding: 5rem;
+}
+
+.quiz-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quiz-container h1 {
+    padding-bottom: 5rem;
+}
+
+.quiz-question {
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 2px double #D8B35D;
+}
+
+.quiz-question legend {
+    padding: 2rem;
+}
+
+.submit-answers {
+    margin-top: 2rem;
+}
+
+
+
+
+
