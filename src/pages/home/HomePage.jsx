@@ -3,9 +3,18 @@ import './HomePage.css';
 import RecipeCard from '../../components/recipeCard/RecipeCard.jsx';
 import Button from '../../components/button/Button.jsx';
 import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
+import SpoonacularRecipes from '../../api/SpoonacularRecipes.jsx';
+
+
+function extractCalories(summary) {
+    if (!summary) return null;
+    const match = summary.match(/(\d+)\s*calories/i);
+    return match ? match[1] : null;
+}
 
 function Home() {
     const navigate = useNavigate();
+    const { recipes, loading, error } = SpoonacularRecipes(3);
 
     return (
         <>
@@ -80,31 +89,19 @@ function Home() {
                 </section>
 
                 <section className="recipe-article-section">
+                    {loading && <p>Recepten laden...</p>}
+                    {error && <p>Er ging iets mis bij het ophalen van de recepten.</p>}
 
-                    <RecipeCard
-                        title="Salade met gerookte kip"
-                        image="/src/assets/IMG_3101.JPG"
-                        time={20}
-                        kcal={500}
-                        onClick={() => navigate('/recipe')}
-                    />
-
-                    <RecipeCard
-                        title="Salade met gerookte kip"
-                        image="/src/assets/IMG_3101.JPG"
-                        time={20}
-                        kcal={500}
-                        onClick={() => navigate('/recipe')}
-                    />
-
-                    <RecipeCard
-                        title="Salade met gerookte kip"
-                        image="/src/assets/IMG_3101.JPG"
-                        time={20}
-                        kcal={500}
-                        onClick={() => navigate('/recipe')}
-                    />
-
+                    {recipes.length > 0 && recipes.map(recipe => (
+                        <RecipeCard
+                            key={recipe.id}
+                            title={recipe.title}
+                            image={recipe.image}
+                            time={recipe.readyInMinutes}
+                            kcal={extractCalories(recipe.summary)}
+                            onClick={() => navigate('/recipe')}
+                        />
+                    ))}
                 </section>
 
             </main>

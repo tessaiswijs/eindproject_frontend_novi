@@ -7,7 +7,7 @@ import './index.css'
 import CounterContextProvider from './context/CounterContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
+    // <React.StrictMode>
         <Router>
             <AuthContextProvider>
                 <CounterContextProvider>
@@ -15,5 +15,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 </CounterContextProvider>
             </AuthContextProvider>
         </Router>
-    </React.StrictMode>,
+    // </React.StrictMode>
 )

@@ -17,34 +17,6 @@ import SignIn from './pages/signIn/SignInPage';
 import SignUp from './pages/signUp/SignUpPage';
 import NotFound from './pages/notFound/NotFoundPage';
 
-
-
-// const [data, setData] = useState({});
-// const [error, toggleError] = useState(false);
-//
-// async function fetchRecipe() {
-//     try {
-//         const result = await axios.get(`https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY}`,
-//             {
-//                 headers: {
-//                     Accept: 'application/json',
-//                 },
-//                 params: {
-//                     number: 3,
-//                 }
-//             });
-//         setData(result.data);
-//     } catch(error) {
-//         console.error(error);
-//         toggleError(true);
-//
-//     }
-// }
-//
-// fetchRecipe();
-
-
-
 function App() {
     const { isAuth } = useContext(AuthContext);
 
