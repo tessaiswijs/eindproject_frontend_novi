@@ -1,17 +1,124 @@
 
+import './MealPlanningPage.css'
+import MealCard from '../../components/mealCard/MealCard.jsx';
+import Button from "../../components/button/Button.jsx";
+
+
 function MealPlanning() {
+    const handleSubmit = () => {
+        // nog nakijken hoe gegevens moeten worden opgeslagen om te gebruiken
+        // voor het ophalen van de API, daarvoor hier nog toevoegen
+    };
+
     return (
         <>
-            <h1>Meal Planning</h1>;
-            <section>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem id libero provident! Accusantium at autem
-                    cumque, esse eum, fugiat ipsa ipsam quia quis ratione repudiandae sapiente sequi sit tempora voluptates.
-                    Accusantium aperiam asperiores, beatae dolor eius error expedita laboriosam maiores minima mollitia nisi
-                    pariatur quaerat quam ratione reiciendis rem similique unde veritatis vitae voluptatum. At atque beatae dolor
-                    fuga hic laudantium maxime praesentium quae quia repudiandae sapiente, sed sint, voluptas. Aliquid asperiores
-                    assumenda commodi consectetur cumque delectus, distinctio dolore ex facilis fugiat maiores officiis quo,
-                    saepe, sequi sunt tempora vero.</p>
-            </section>
+            <header className="page-header-mealplanpage">
+                <h1>My weekplan</h1>
+                <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
+                <p>these are the recipes you choose. You can add up to 7 recipes for every day of de week.
+                    If jou want to choose another recipe you can click on the trashcan.</p>
+            </header>
+
+            <main className="weekplan-section">
+                <div className="weekplan-container">
+                <article>
+                    <MealCard
+                        title="Noedels met ei en kip en patat en degrgr efrghioag"
+                        image='src/assets/IMG_3101.JPG'
+                        onClick={() => navigate(`/recipe/`)}
+                    />
+                </article>
+
+                <article>
+                    <MealCard
+                        title="Noedels met ei en kip"
+                        image='src/assets/IMG_3101.JPG'
+                        onClick={() => navigate(`/recipe/`)}
+                    />
+                </article>
+
+                <article>
+                    <MealCard
+                        title="Noedels met ei en kip"
+                        image='src/assets/IMG_3101.JPG'
+                        onClick={() => navigate(`/recipe/`)}
+                    />
+                </article>
+
+                <article>
+                    <MealCard
+                        title="Noedels met ei en kip"
+                        image='src/assets/IMG_3101.JPG'
+                        onClick={() => navigate(`/recipe/`)}
+                    />
+                </article>
+
+                <article>
+                    <MealCard
+                        title="Noedels met ei en kip"
+                        image='src/assets/IMG_3101.JPG'
+                        onClick={() => navigate(`/recipe/`)}
+                    />
+                </article>
+
+                <article>
+                    <MealCard
+                        title="Noedels met ei en kip"
+                        image='src/assets/IMG_3101.JPG'
+                        onClick={() => navigate(`/recipe/`)}
+                    />
+                </article>
+
+                <article>
+                    <MealCard
+                        title="Noedels met ei en kip"
+                        image='src/assets/IMG_3101.JPG'
+                        onClick={() => navigate(`/recipe/`)}
+                    />
+                </article>
+
+                </div>
+
+                <section className="grocerylist-section">
+                    <h2> Grocery list</h2>
+                    <ol className="ingredient-list">
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                    </ol>
+
+                    <Button
+                        type="button"
+                        className="send-grocery-list-button"
+                        onClick={handleSubmit}>
+                        <span>
+                            send grocery list to my email address
+                        </span>
+                    </Button>
+
+
+                </section>
+
+
+            </main>
+
+
         </>
     );
 }

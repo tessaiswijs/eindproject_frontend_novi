@@ -1,0 +1,42 @@
+.added-recipe-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F1EB;
+    max-width: 12rem;
+    height: 17rem;
+    margin: 0.5rem;
+    border-radius: 1rem 0 1rem 1rem;
+    overflow: hidden;
+}
+
+.added-recipe-image {
+    width: 12rem;
+}
+
+.trashcan-icon {
+    width: 3rem;
+}
+
+.trashcan-container {
+    display: flex;
+    justify-content: center;
+    background-color: #D8B35D;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    bottom: 4rem;
+    left: 8rem;
+}
+
+.added-recipe-titel-container {
+    text-align: center;
+    padding: 0.5rem 0;
+    margin-top: -3rem;   /* dit is niet hoe het hoort, maar ik kom er niet achter waarom daar ruimte zit */
+}
+
+.added-recipe-title {
+    margin: 0 1rem 0 1rem;
+    color: #D8B35D;
+
+}

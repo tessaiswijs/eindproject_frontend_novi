@@ -16,14 +16,13 @@ function Quiz() {
         <>
             <main className="quiz-container">
 
-               <section className="quiz-header-container">
+                <section className="quiz-header-container">
 
-                   <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo Mealtap"/>
+                    <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo Mealtap"/>
 
-                   <h1>Quiz</h1>
+                    <h1>Quiz</h1>
 
-               </section>
-
+                </section>
 
 
                 <form>
@@ -63,7 +62,6 @@ function Quiz() {
                         <QuizQuestion name="intolerances" value="soy" label="Soy"/>
                     </fieldset>
 
-
                     <Button
                         type="button"
                         className="submit-answers"
@@ -72,9 +70,6 @@ function Quiz() {
                     </Button>
 
                 </form>
-
-
-
 
             </main>
         </>
