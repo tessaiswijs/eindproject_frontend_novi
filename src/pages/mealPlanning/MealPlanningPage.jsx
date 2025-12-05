@@ -1,3 +1,5 @@
+
+import './MealPlanningPage.css'
 import MealCard from '../../components/mealCard/MealCard.jsx';
 import Button from "../../components/button/Button.jsx";
 
@@ -17,10 +19,11 @@ function MealPlanning() {
                     If jou want to choose another recipe you can click on the trashcan.</p>
             </header>
 
-            <main className="choosen-recipe-section">
+            <main className="weekplan-section">
+                <div className="weekplan-container">
                 <article>
                     <MealCard
-                        title="Noedels met ei en kip en patat en degrgr efrghioagh rhogdfhiug eRGIH IAEURAROGIH AOIAESGIHO ADIHOV"
+                        title="Noedels met ei en kip en patat en degrgr efrghioag"
                         image='src/assets/IMG_3101.JPG'
                         onClick={() => navigate(`/recipe/`)}
                     />
@@ -73,6 +76,8 @@ function MealPlanning() {
                         onClick={() => navigate(`/recipe/`)}
                     />
                 </article>
+
+                </div>
 
                 <section className="grocerylist-section">
                     <h2> Grocery list</h2>
