@@ -14,18 +14,20 @@ function extractCalories(summary) {
 
 function Home() {
     const navigate = useNavigate();
-    const { recipes, loading, error } = SpoonacularRecipes(3);
+    const {recipes, loading, error} = SpoonacularRecipes(3);
 
     return (
         <>
             <header className="page-header">
                 <div className="title-section">
-                    <h1>Makkelijke maaltijden plannen</h1>
-                    <p className="header_text">Weet je ook nooit wat je moet koken? Wil je een keer iets anders
-                        proberen? Met MealTap kun je met een
-                        paar klikken een weekschema maken zodat jij zonder stress en gedoe je week doorkomt. Zo houd jij
-                        meer
-                        tijd over voor de echt belangrijke dingen.</p>
+                    <h1>Easy Mealplanning</h1>
+                    <p className="header_text">Our meal plan website helps you enjoy healthy, balanced, and stress-free
+                        meals every single day. Whether your goal is to lose weight, build muscle, save time, or simply
+                        find fresh inspiration in the kitchen — we make it easy.
+                        Discover personalized weekly menus, smart shopping lists, and delicious recipes that fit your
+                        taste, goals, and schedule. Enjoy more free time while still eating nutritious and flavorful
+                        meals.
+                        Start today and experience how simple good eating can be!</p>
                 </div>
 
 
@@ -36,7 +38,7 @@ function Home() {
                             image="/src/assets/quiz_icon.png"
                             altText="quiz icoon"
                             step={1}
-                            text="Doe de quiz"
+                            text="Do the quiz"
                         />
                     </li>
 
@@ -45,7 +47,7 @@ function Home() {
                             image="/src/assets/cooking_icon.png"
                             altText="pan icoon"
                             step={2}
-                            text="Kies je recept"
+                            text="Choose recipe"
                         />
                     </li>
 
@@ -54,16 +56,16 @@ function Home() {
                             image="/src/assets/weekplan_icon.png"
                             altText="planning icoon"
                             step={3}
-                            text="Voeg je recepten toe"
+                            text="Add your recipes"
                         />
                     </li>
 
                     <li className="steps">
                         <MealplanSteps
                             image="/src/assets/list_icon.png"
-                            altText="lijst icoon"
+                            altText="list icon"
                             step={4}
-                            text="Maak je boodschappenlijst"
+                            text="Make your grocerylist"
                         />
                     </li>
                 </ol>
@@ -84,13 +86,13 @@ function Home() {
                     <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
 
                     <h2 className="title_recipe-header">
-                        Een selectie van onze recepten
+                        A selection of our recipes
                     </h2>
                 </section>
 
                 <section className="recipe-article-section">
-                    {loading && <p>Recepten laden...</p>}
-                    {error && <p>Er ging iets mis bij het ophalen van de recepten.</p>}
+                    {loading && <p>loading recipes...</p>}
+                    {error && <p>Oeps.. we where not able to show the recipes</p>}
 
                     {recipes.length > 0 && recipes.map(recipe => (
                         <RecipeCard
@@ -99,8 +101,9 @@ function Home() {
                             image={recipe.image}
                             time={recipe.readyInMinutes}
                             kcal={extractCalories(recipe.summary)}
-                            onClick={() => navigate('/recipe')}
+                            onClick={() => navigate(`/recipe/${recipe.id}`)}
                         />
+
                     ))}
                 </section>
 

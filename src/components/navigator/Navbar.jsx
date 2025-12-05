@@ -18,19 +18,19 @@ function NavBar() {
                 <li>
                     <NavLink to="/Quiz" className={({ isActive }) => isActive === true ?
                         "active-link" : "default-link"}>
-                        Doe de quiz
+                        Do the quiz
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/RecipeOverview" className={({ isActive }) => isActive === true ?
                         "active-link" : "default-link"}>
-                        Recepten
+                        Recipes
                     </NavLink>
         </li>
                 <li>
                     <NavLink to="/MealPlanning" className={({ isActive }) => isActive === true ?
                         "active-link" : "default-link"}>
-                        Maaltijdplanning
+                        Mealplanning
                     </NavLink>
 
                     {count !== 0 && (

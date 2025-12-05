@@ -44,14 +44,14 @@ function SignIn() {
                         type="button"
                         className="registration-button"
                         onClick={() => navigate('/signup')}>
-                        Registreren
+                        Register
                     </Button>
 
                     <Button
                         type="button"
                         className="login-button"
                         onClick={() => navigate('/signin')}>
-                        Inloggen
+                        Login
                     </Button>
                 </div>
 
@@ -60,16 +60,15 @@ function SignIn() {
                     <section className="login-header-section">
                         <img src="/src/assets/logo_yellow.png" alt="MealTap logo"/>
 
-                        <h1>Inloggen</h1>
-                        <p>Log in bij MealTap en maak jouw makkelijk weekplanning. De recepten kun je makkelijk
-                            terugvinden in jouw account. </p>
+                        <h1>Login</h1>
+                        <p>Log in to MealTap and create your own weekly meal plan. Your recipes wil be easily accessible in your account.</p>
 
                     </section>
 
                     <form className="login-form" onSubmit={handleSubmit}>
                         <InputField
                             name="email-field"
-                            label="Emailadres"
+                            label="email address"
                             type="email"
                             id="email-field"
                             value={email}
@@ -78,23 +77,23 @@ function SignIn() {
 
                         <InputField
                             name="password-field"
-                            label="Wachtwoord"
+                            label="password"
                             type="password"
                             id="password-field"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        {error && <p className="error">Combinatie van e-mailadres en wachtwoord is onjuist</p>}
+                        {error && <p className="error">The combination of email address and password is incorrect. Pleas try again.</p>}
 
                         <Button
                             type="submit"
                             className="form-button">
-                            Inloggen
+                            Login
                         </Button>
 
                     </form>
 
-                    <p>Heb je nog geen account? <Link to="/signup">Registreer</Link> je dan eerst.</p>
+                    <p>Don't have an account yet? Then <Link to="/signup">register</Link> first.</p>
 
                 </div>
             </div>

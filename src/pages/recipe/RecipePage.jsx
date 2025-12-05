@@ -1,112 +1,109 @@
 import './RecipePage.css';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import {CounterContext} from '../../context/CounterContext.jsx';
 
-
 function Recipe() {
-    const {incrementCount, count} = useContext(CounterContext);
-    // const [added, setAdded] = useState(false)
+    const { id } = useParams();
+    const { incrementCount, count } = useContext(CounterContext);
 
+    const [recipe, setRecipe] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const [disabled, setDisabled] = useState(false);
 
+    useEffect(() => {
+        async function fetchRecipe() {
+            try {
+                const res = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${import.meta.env.VITE_API_KEY}`);
+                const data = await res.json();
+                setRecipe(data);
+            } catch (err) {
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchRecipe();
+    }, [id]);
+
     const handleClick = () => {
-        incrementCount();   // je bestaande context functie
-        setDisabled(true);  // button disabled maken
+        incrementCount();
+        setDisabled(true);
     };
 
+    if (loading) return <p>Loading recipe...</p>;
+    if (error || !recipe) return <p>Oeps. Something went wrong loading te recipe</p>;
+
     return (
-        <>
+        <article className="recipe-description-container">
 
-            <article className="recipe-description-container">
+            <section className="general-info-container">
+                <img className="food-image"
+                     src={recipe.image}
+                     alt={recipe.title}/>
 
-                <section className="general-info-container">
-                    <img className="food-image"
-                         src="/src/assets/IMG_3101.JPG"
-                         alt="afbeelding eten"/>
+                <div className="recipe-info-container">
+                    <h2>{recipe.title}</h2>
 
-                    <div className="recipe-info-container">
-
-                        <h2>Noedels met spinazie en ei</h2>
-
-                        <div className="recipe-summary">
-
-                            <div className="recipe-summary-item">
-                                <img src="/src/assets/bord_icon.png" alt="bord"/>
-                                <span>4 porties</span>
-                            </div>
-
-                            <div className="recipe-summary-item">
-                                <img src="/src/assets/time_icon.png" alt="klok"/>
-                                <span>20 minuten</span>
-                            </div>
-
-                            <div className="recipe-summary-item">
-                                <img src="/src/assets/kcal_icon.png" alt="calorieën"/>
-                                <span>500 kcal</span>
-                            </div>
-
+                    <div className="recipe-summary">
+                        <div className="recipe-summary-item">
+                            <img src="/src/assets/bord_icon.png" alt="plate"/>
+                            <span>{recipe.servings} portions</span>
                         </div>
 
-                        <div className="nutrition-info">
-                            <p>Voedingswaarden per portie:</p>
-                            <p>vetten 12 g | verzadigen vetten 3 g | koolhydraten 49 g | suikers 21 g | eiwitten 4 g</p>
+                        <div className="recipe-summary-item">
+                            <img src="/src/assets/time_icon.png" alt="time"/>
+                            <span>{recipe.readyInMinutes} minutes</span>
                         </div>
 
+                        <div className="recipe-summary-item">
+                            <img src="/src/assets/kcal_icon.png" alt="calories"/>
+                            <span>{recipe.nutrition?.nutrients?.[0]?.amount || '–'} calories</span>
+                        </div>
                     </div>
 
-                </section>
-
-                <section className="ingredients-method-container">
-
-                    <div className="ingredient-container">
-                        <h2>Ingrediënten</h2>
-
-                        <ol className="ingredients">
-                            <li> 100 ml melk</li>
-                            <li> 2 eieren</li>
-                            <li> 100 ml melk</li>
-                            <li> 2 eieren</li>
-                            <li> 100 ml melk</li>
-                            <li> 2 eiererdfrrrrrrrrrrrrrrrrr reyry rtyrtyt bergdg drgdh rytrynrtyrt retytytr rtytryrt
-                                rtyttr tryutry
-                            </li>
-                            <li> 100 ml melk</li>
-                            <li> 2 eieren</li>
-                            <li> 100 ml melk</li>
-                            <li> 2 eieren</li>
-                        </ol>
+                    <div className="nutrition-info">
+                        <p>Nutrition info:</p>
+                        {/* Hier kun je meer nutrition data toevoegen */}
                     </div>
 
-                    <div className="method-container">
-                        <h2>Methode</h2>
+                </div>
+            </section>
 
-                        <ol className="method-steps">
-                            <li> Kook de noedels volgens de verpakking en giet af.</li>
-                            <li> Kook de noedels volgvgfdhgghgf fghfghfth drhthens de verpakking en giet af.</li>
-                            <li> Kook de noedels volgens de verpakking en giet af.</li>
-                            <li> Kook de noedels volgens de verpakking en giet af.</li>
-                            <li> Kook de noedels volgens de verpakking en giet af.</li>
-                            <li> Kook de noedels volgens de verpakking en giet af.</li>
-                        </ol>
+            <section className="ingredients-method-container">
+                <div className="ingredient-container">
+                    <h2>Ingredients</h2>
+                    <ol className="ingredients">
+                        {recipe.extendedIngredients.map(ing => (
+                            <li key={ing.id}>{ing.original}</li>
+                        ))}
+                    </ol>
+                </div>
 
-                        <Button
-                            type="button"
-                            className="add-recipe-button"
-                            onClick={handleClick}
-                            disabled={disabled}>
-                            <span> {disabled ? "Recept is toegevoegd" : `Voeg recept toe aan weekmenu ${count}/7`} </span>
+                <div className="method-container">
+                    <h2>Method</h2>
+                    <ol className="method-steps">
+                        {recipe.analyzedInstructions[0]?.steps.map(step => (
+                            <li key={step.number}>{step.step}</li>
+                        ))}
+                    </ol>
 
-                        </Button>
+                    <Button
+                        type="button"
+                        className="add-recipe-button"
+                        onClick={handleClick}
+                        disabled={disabled}>
+                        <span>
+                            {disabled ? "Already added this recipe" : `Add recipe to weekmenu ${count}/7`}
+                        </span>
+                    </Button>
+                </div>
+            </section>
 
-                    </div>
-
-                </section>
-
-            </article>
-
-        </>
-
+        </article>
     );
 }
 

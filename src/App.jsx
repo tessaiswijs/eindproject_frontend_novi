@@ -31,7 +31,7 @@ function App() {
                     <Route path="/signup" element={<SignUp />}/>
                     <Route path="/quiz" element={<Quiz />}/>
                     <Route path="/recipeoverview" element={<RecipeOverview />}/>
-                    <Route path="/recipe" element={<Recipe />}/>
+                    <Route path="/recipe/:id" element={<Recipe />}/>
                     <Route path="/mealplanning" element={<MealPlanning />}/>
                     <Route path="*" element={<NotFound />}/>
                 </Routes>

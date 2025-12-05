@@ -18,9 +18,9 @@ function Quiz() {
 
                <section className="quiz-header-container">
 
-                   <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="klok"/>
+                   <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo Mealtap"/>
 
-                   <h1>Welke recepten vind je lekker?</h1>
+                   <h1>Quiz</h1>
 
                </section>
 
@@ -28,39 +28,39 @@ function Quiz() {
 
                 <form>
                     <fieldset className="quiz-question">
-                        <legend>Welke wensen heb je?</legend>
-                        <QuizQuestion name="maxReadyTime" value={20} label="max. 20 minuten"/>
-                        <QuizQuestion name="maxCalories" value={500} label="max. 500 kcal per"/>
-                        <QuizQuestion name="minProtein" value={30} label="30+ gram eiwitten"/>
-                        <QuizQuestion name="diet" value="vegetarian" label="Vegetarisch"/>
+                        <legend>What recipes do you like?</legend>
+                        <QuizQuestion name="maxReadyTime" value={20} label="max. 20 minutes"/>
+                        <QuizQuestion name="maxCalories" value={500} label="max. 500 calories per portion"/>
+                        <QuizQuestion name="minProtein" value={30} label="30+ gram of protien"/>
+                        <QuizQuestion name="diet" value="vegetarian" label="Vegetarian"/>
                         <QuizQuestion name="diet" value="vegan" label="Vegan"/>
-                        <QuizQuestion name="diet" value="pescetarian" label="Geen vlees wel vis"/>
+                        <QuizQuestion name="diet" value="pescetarian" label="No meat, fish is fine"/>
                     </fieldset>
 
                     <fieldset className="quiz-question">
-                        <legend>Welke keukens vind je lekker?</legend>
+                        <legend>Add your favorite cuisine</legend>
 
-                        <QuizQuestion name="cuisine" value="asian" label="Aziatisch"/>
-                        <QuizQuestion name="cuisine" value="american" label="Amerikaans"/>
-                        <QuizQuestion name="cuisine" value="british" label="Brits"/>
-                        <QuizQuestion name="cuisine" value="chinese" label="Chinees"/>
-                        <QuizQuestion name="cuisine" value="european" label="Europees"/>
-                        <QuizQuestion name="cuisine" value="french" label="Frans"/>
-                        <QuizQuestion name="cuisine" value="german" label="Duits"/>
-                        <QuizQuestion name="cuisine" value="mediterranean" label="Mediterraans"/>
-                        <QuizQuestion name="cuisine" value="mexican" label="Mexicaans"/>
-                        <QuizQuestion name="cuisine" value="vietnamese" label="Vietnamees"/>
+                        <QuizQuestion name="cuisine" value="asian" label="Asian"/>
+                        <QuizQuestion name="cuisine" value="american" label="American"/>
+                        <QuizQuestion name="cuisine" value="british" label="British"/>
+                        <QuizQuestion name="cuisine" value="chinese" label="Chinese"/>
+                        <QuizQuestion name="cuisine" value="european" label="European"/>
+                        <QuizQuestion name="cuisine" value="french" label="French"/>
+                        <QuizQuestion name="cuisine" value="german" label="German"/>
+                        <QuizQuestion name="cuisine" value="mediterranean" label="Mediterranean"/>
+                        <QuizQuestion name="cuisine" value="mexican" label="Mexican"/>
+                        <QuizQuestion name="cuisine" value="vietnamese" label="Vietnamese"/>
 
                     </fieldset>
 
                     <fieldset className="quiz-question">
-                        <legend>Heb je een allergie?</legend>
+                        <legend>Do you have allergies?</legend>
 
                         <QuizQuestion name="intolerances" value="gluten" label="Gluten"/>
-                        <QuizQuestion name="intolerances" value="dairy" label="Zuivel"/>
-                        <QuizQuestion name="intolerances" value="egg" label="Ei"/>
-                        <QuizQuestion name="intolerances" value="peanut" label="Pinda"/>
-                        <QuizQuestion name="intolerances" value="soy" label="Soja"/>
+                        <QuizQuestion name="intolerances" value="dairy" label="Dairy"/>
+                        <QuizQuestion name="intolerances" value="egg" label="Egg"/>
+                        <QuizQuestion name="intolerances" value="peanut" label="Peanut"/>
+                        <QuizQuestion name="intolerances" value="soy" label="Soy"/>
                     </fieldset>
 
 

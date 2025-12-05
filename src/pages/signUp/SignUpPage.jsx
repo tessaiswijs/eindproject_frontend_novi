@@ -53,14 +53,14 @@ function SignUp() {
                         type="button"
                         className="registration-button"
                         onClick={() => navigate('/signup')}>
-                        Registreren
+                        Register
                     </Button>
 
                     <Button
                         type="button"
                         className="login-button"
                         onClick={() => navigate('/signin')}>
-                        Inloggen
+                        Login
                     </Button>
 
                 </div>
@@ -70,8 +70,7 @@ function SignUp() {
                     <section className="signup-header-section">
                         <img src="/src/assets/logo_yellow.png" alt="MealTap logo"/>
                         <h1>Registreren</h1>
-                        <p>Wordt lid van MealTap en maak jouw makkelijk weekplanning. De recepten kun je makkelijk
-                            terugvinden in jouw account.
+                        <p>Register to MealTap and create your own weekly meal plan. Your recipes wil be easily accessible in your account.
                         </p>
                     </section>
 
@@ -80,7 +79,7 @@ function SignUp() {
 
                         <InputField
                             name="email-field"
-                            label="Emailadres"
+                            label="Email Address"
                             type="email"
                             id="email-field"
                             value={email}
@@ -89,35 +88,35 @@ function SignUp() {
 
                         <InputField
                             name="password-field"
-                            label="Wachtwoord"
+                            label="Password"
                             type="password"
                             id="password-field"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
 
-                        <InputField
-                            name="password-confirm"
-                            label="Wachtwoordcontrole"
-                            type="password"
-                            id="password-confirm"
-                            value={passwordConfirm}
-                            onChange={(e) => setPasswordConfirm(e.target.value)}
-                        />
+                        {/*<InputField*/}
+                        {/*    name="password-confirm"*/}
+                        {/*    label="Wachtwoordcontrole"*/}
+                        {/*    type="password"*/}
+                        {/*    id="password-confirm"*/}
+                        {/*    value={passwordConfirm}*/}
+                        {/*    onChange={(e) => setPasswordConfirm(e.target.value)}*/}
+                        {/*/>*/}
 
-                        {error && <p className="error">Dit account bestaat al. Probeer een ander e-mailadres.</p>}
+                        {error && <p className="error">This account already exists. Pleas try another email address or log in.</p>}
 
                         <Button
                             type="submit"
                             className="form-button"
                             disabled={loading}>
-                            Registeren
+                            Register
                         </Button>
 
                     </form>
 
 
-                    <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
+                    <p>Do you have an account already? Then you can <Link to="/signin">login</Link></p>
                 </div>
             </div>
         </>

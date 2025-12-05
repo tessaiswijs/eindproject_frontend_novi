@@ -5,8 +5,8 @@ function NotFound() {
     return (
         <>
                 <main className="page-container-not-found">
-                    <h2>Oeps... deze pagina bestaat niet</h2>
-                    <p>Ga terug naar de <Link to="/">homepagina</Link></p>
+                    <h2>Oeps... this page doesn't exist</h2>
+                    <p>Go back to <Link to="/">home</Link></p>
                 </main>
 
 
