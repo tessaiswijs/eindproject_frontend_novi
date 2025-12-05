@@ -1,7 +1,6 @@
 .recipe-description-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin: 0 auto;
     max-width: fit-content;
     border-radius: 25px 0 25px 25px;
@@ -12,7 +11,10 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    align-self: stretch;
+}
+
+.general-info-container img {
+    width: 35rem;
 }
 
 .ingredients-method-container {
@@ -52,7 +54,7 @@
 .recipe-info-container {
     display: flex;
     flex-direction: column;
-    max-width: 35rem;
+    width: 35rem;
     background-color: #F4F1EB;
     padding: 5rem 3rem 3rem 3rem;
 }

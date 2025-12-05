@@ -4,6 +4,14 @@ import { useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import {CounterContext} from '../../context/CounterContext.jsx';
 
+function extractNutrition(summary, nutrient) {
+    if (!summary) return null;
+    const nutrientSort = new RegExp(`(\\d+\\s*\\w*)\\s*${nutrient}`, 'i');
+    const match = summary.match(nutrientSort);
+    return match ? match[1] : null;
+}
+
+
 function Recipe() {
     const { id } = useParams();
     const { incrementCount, count } = useContext(CounterContext);
@@ -61,13 +69,15 @@ function Recipe() {
 
                         <div className="recipe-summary-item">
                             <img src="/src/assets/kcal_icon.png" alt="calories"/>
-                            <span>{recipe.nutrition?.nutrients?.[0]?.amount || '–'} calories</span>
+                            <span>{extractNutrition(recipe.summary, "calories")} calories</span>
                         </div>
                     </div>
 
                     <div className="nutrition-info">
                         <p>Nutrition info:</p>
-                        {/* Hier kun je meer nutrition data toevoegen */}
+                        {extractNutrition(recipe.summary, "protein")} protein,
+                        {extractNutrition(recipe.summary, "fat")} fat and
+                        {extractNutrition(recipe.summary, "calories")} calories.
                     </div>
 
                 </div>
