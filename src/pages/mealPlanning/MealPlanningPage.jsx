@@ -1,7 +1,13 @@
 import MealCard from '../../components/mealCard/MealCard.jsx';
+import Button from "../../components/button/Button.jsx";
 
 
 function MealPlanning() {
+    const handleSubmit = () => {
+        // nog nakijken hoe gegevens moeten worden opgeslagen om te gebruiken
+        // voor het ophalen van de API, daarvoor hier nog toevoegen
+    };
+
     return (
         <>
             <header className="page-header-mealplanpage">
@@ -11,7 +17,7 @@ function MealPlanning() {
                 If jou want to choose another recipe you can click on the trashcan.</p>
             </header>
 
-            <main className="recipe-article-section">
+            <main className="choosen-recipe-section">
                 <article>
                     <MealCard
                         title= "Noedels met ei en kip"
@@ -67,8 +73,47 @@ function MealPlanning() {
                         onClick={() => navigate(`/recipe/`)}
                     />
                 </article>
+
+                <section className="grocerylist-section">
+                    <h2> Grocerylist</h2>
+                    <ol className="ingredient-list">
+                            <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                        <li>ei</li>
+                    </ol>
+
+                    <Button
+                        type="button"
+                        className="send-grocerylist-button"
+                        onClick={handleSubmit}>
+                        <span>
+                            send grocerylist to my email address
+                        </span>
+                    </Button>
+
+
+                </section>
+
 
             </main>
+
+
         </>
     );
 }
