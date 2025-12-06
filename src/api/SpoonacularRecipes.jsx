@@ -6,7 +6,7 @@ export function SpoonacularRecipes(number = 3) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
-    const endpoint = `https://api.spoonacular.com/recipes/random?number=${number}&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY}`;
+    const endpoint = `https://api.spoonacular.com/recipes/random?number=${number}&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
 
     useEffect(() => {
         const controller = new AbortController();
