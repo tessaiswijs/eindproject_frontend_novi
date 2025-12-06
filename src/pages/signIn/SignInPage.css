@@ -72,3 +72,25 @@
     border: none;
     border-bottom: 2px solid white;
 }
+
+/*////////////////////////
+    1. Styling when logged in succesfully
+////////////////////////*/
+
+.login-successfully-container {
+    margin: 5rem 2rem;
+    text-align: center;
+}
+
+.what-next-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.successfully-sentence {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #D8B35D;
+}

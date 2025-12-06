@@ -81,9 +81,9 @@ function SignIn() {
                         </section>
 
                         {isLoggedIn ? (
-                            <section className="login-succesfull-container"> Succesfully logged in!
+                            <section className="login-successfully-container"> <span className={"successfully-sentence"}>Successfully logged in!</span>
 
-                                <p className="login-sentence">Wat do you want to do?
+                                <p className="what-next-container">What do you want to do?
                                     <span>Go to <Link to="/"> home </Link></span>
                                     <span>Do <Link to="/quiz"> the quiz </Link></span>
                                     <span>See your <Link to="/mealplanning"> weekplan </Link></span>
