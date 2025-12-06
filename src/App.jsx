@@ -2,7 +2,6 @@ import {useContext, useState} from 'react';
 import './App.css';
 import { Route, Navigate, Routes } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
-import axios from 'axios';
 
 import NavBar from './components/navigator/Navbar.jsx';
 import FooterBar from './components/footer/FooterBar.jsx';
@@ -12,7 +11,6 @@ import MealPlanning from './pages/mealPlanning/mealPlanningPage';
 import Quiz from './pages/quiz/QuizPage';
 import Recipe from './pages/recipe/RecipePage';
 import RecipeOverview from './pages/recipeOverview/RecipeOverviewPage';
-// import Profile from './pages/profile/Profile.jsx';
 import SignIn from './pages/signIn/SignInPage';
 import SignUp from './pages/signUp/SignUpPage';
 import NotFound from './pages/notFound/NotFoundPage';

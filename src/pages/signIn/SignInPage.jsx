@@ -13,6 +13,7 @@ function SignIn() {
     const [loading, toggleLoading] = useState(false);
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
+    const isLoggedIn = localStorage.getItem("token");
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -45,8 +46,10 @@ function SignIn() {
     }
 
     return (
-        <div className="poke-deck">
+
+        <div>
             <>
+
                 <div className="sign-in-page">
 
                     <div className="registration-login-button-container">
@@ -71,10 +74,26 @@ function SignIn() {
                             <img src="/src/assets/logo_yellow.png" alt="MealTap logo"/>
 
                             <h1>Login</h1>
+
                             <p>Log in to MealTap and create your own weekly meal plan. Your recipes wil be easily
                                 accessible in your account.</p>
 
                         </section>
+
+                        {isLoggedIn ? (
+                            <section className="login-succesfull-container"> Succesfully logged in!
+
+                                <p className="login-sentence">Wat do you want to do?
+                                    <span>Go to <Link to="/"> home </Link></span>
+                                    <span>Do <Link to="/quiz"> the quiz </Link></span>
+                                    <span>See your <Link to="/mealplanning"> weekplan </Link></span>
+                                </p>
+
+                            </section>
+
+                        ) : (
+
+
 
                         <form className="login-form" onSubmit={handleSubmit}>
                             <InputField
@@ -103,13 +122,15 @@ function SignIn() {
                                 className="form-button">
                                 Login
                             </Button>
-
+                            <p>Don't have an account yet? <Link to="/signup">register</Link> first.</p>
                         </form>
+                        )}
 
-                        <p>Don't have an account yet? Then <Link to="/signup">register</Link> first.</p>
 
                     </div>
+
                 </div>
+
             </>
             {loading && <p>Loading...</p>}
         </div>

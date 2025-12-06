@@ -57,7 +57,7 @@ function AuthContextProvider({children}) {
             status: 'done',
         });
 
-        navigate('/profile');
+        // navigate('/home');
     }
 
     function logout() {

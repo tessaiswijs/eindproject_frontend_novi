@@ -28,7 +28,7 @@ function MealPlanning() {
                 <section className="login-link-container"> If you want to make or see your meal planning, please login first.
 
                     <p className="login-sentence">If you have an account go to<Link
-                        to="/signin"> the inlog page.</Link>
+                        to="/signin"> the inlog page. </Link>
                      Otherwise register at the<Link
                         to="/signup"> the registration page.</Link></p>
                 </section>
