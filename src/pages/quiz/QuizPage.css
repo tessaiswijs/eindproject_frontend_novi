@@ -34,6 +34,22 @@
     margin-top: 2rem;
 }
 
+/*////////////////////////
+    1. Styling alternative content when not logged in
+////////////////////////*/
+
+.login-link-container {
+    display: block;
+    margin: 5rem 2rem;
+    text-align: center;
+}
+.login-sentence {
+    margin: 2rem 0rem;
+}
+
+
+
+
 
 
 

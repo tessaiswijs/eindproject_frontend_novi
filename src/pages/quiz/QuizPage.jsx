@@ -28,13 +28,13 @@ function Quiz() {
 
 
                 {!isLoggedIn ? (
-                    <p className="login-link-container"> I you want to do the quiz, please login first.
+                    <section className="login-link-container"> I you want to do the quiz, please login first.
 
-                        <span className="login-sentence">If you have an account go to the<Link
-                            to="/signin"> inlog page.</Link></span>
-                        <span className="registration-sentence">If you don't have an account go to the<Link
-                            to="/signup"> registration page.</Link></span>
-                    </p>
+                        <p className="login-sentence">If you have an account go to the<Link
+                            to="/signin"> inlog page. </Link>
+                         Otherwise register at the<Link
+                            to="/signup"> registration page.</Link></p>
+                    </section>
 
                 ) : (
 
