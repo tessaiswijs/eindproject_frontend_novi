@@ -31,7 +31,7 @@ function App() {
                     <Route path="/signup" element={<SignUp />}/>
 
                     <Route path="/quiz" element={<Quiz />}/>
-                    <Route path="/mealplanning" element={isAuth ? <MealPlanning /> : <Navigate to= "/signin"/>}/>
+                    <Route path="/mealplanning" element={<MealPlanning />}/>
 
                     <Route path="/recipeoverview" element={<RecipeOverview />}/>
                     <Route path="/recipe/:id" element={<Recipe />}/>
