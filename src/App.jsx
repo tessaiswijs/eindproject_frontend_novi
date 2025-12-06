@@ -30,9 +30,12 @@ function App() {
                     <Route path="/signin" element={<SignIn />}/>
                     <Route path="/signup" element={<SignUp />}/>
                     <Route path="/quiz" element={<Quiz />}/>
+                    {/*<Route path="/quiz" {isAuth ? <MealPlanning /> : <Navigate to= "/signin"/>}*/}
+
                     <Route path="/recipeoverview" element={<RecipeOverview />}/>
                     <Route path="/recipe/:id" element={<Recipe />}/>
                     <Route path="/mealplanning" element={<MealPlanning />}/>
+                    {/*<Route path="/mealplanning" {isAuth ? <MealPlanning /> : <Navigate to= "/signin"/>}*/}
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
             </div>

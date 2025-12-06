@@ -18,9 +18,13 @@ function SignIn() {
         toggleError(false);
 
         try {
-            const result = await axios.post('http://localhost:3000/login', {
+            const result = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/login', {
                 email: email,
                 password: password,
+            }, {
+                headers: {
+                    'novi-education-project-id': import.meta.env.VITE_API_KEY,
+                }
             });
             // log het resultaat in de console
             console.log(result.data);
