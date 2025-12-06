@@ -25,13 +25,13 @@ function MealPlanning() {
             </header>
 
             {!isLoggedIn ? (
-                <p className="login-link-container"> If you want to make or see your meal planning, please login first.
+                <section className="login-link-container"> If you want to make or see your meal planning, please login first.
 
-                    <span className="login-sentence">If you have an account go to<Link
-                        to="/signin"> the inlog page.</Link></span>
-                    <span className="registration-sentence">If you don't have an account go to<Link
-                        to="/signup"> the registration page.</Link></span>
-                </p>
+                    <p className="login-sentence">If you have an account go to<Link
+                        to="/signin"> the inlog page.</Link>
+                     Otherwise register at the<Link
+                        to="/signup"> the registration page.</Link></p>
+                </section>
             ) : (
 
 
