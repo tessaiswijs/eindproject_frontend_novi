@@ -12,7 +12,6 @@ function SignUp() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [registered, setRegistered] = useState(false);
-    const isLoggedIn = localStorage.getItem("token");
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -89,18 +88,7 @@ function SignUp() {
                     </p>
                 </section>
 
-
-                {isLoggedIn ? (
-                        <section className="login-successfully-container"> <span className="successfully-sentence">You are already logged in</span>
-
-                            <p className="what-next-container">What do you want to do?
-                                <span>Go to <Link to="/"> home </Link></span>
-                                <span>Do <Link to="/quiz"> the quiz </Link></span>
-                                <span>See your <Link to="/mealplanning"> weekplan </Link></span>
-                            </p>
-
-                        </section>
-                    ) :
+                {
                     registered ? (
                     <section className="login-successfully-container"><span className="successfully-sentence">Registration successful!</span>
                         <p className="what-next-container">You are one step away from your meal planning!

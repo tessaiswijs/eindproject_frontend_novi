@@ -24,7 +24,7 @@ function App() {
                     <Route path="/" element={<Home />}/>
 
                     <Route path="/signin" element={<SignIn />}/>
-                    <Route path="/signup" element={<SignUp />}/>
+                    <Route path="/signup" element={ !isAuth ? <SignUp /> : <Navigate to="/signin" />}/>
 
                     <Route path="/quiz" element={<Quiz />}/>
                     <Route path="/mealplanning" element={<MealPlanning />}/>
