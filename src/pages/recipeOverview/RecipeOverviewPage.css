@@ -1,0 +1,6 @@
+.recipe-overview-header-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
