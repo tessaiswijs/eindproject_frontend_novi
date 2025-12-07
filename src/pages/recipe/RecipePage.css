@@ -90,3 +90,12 @@
     justify-content: center;
     margin: 24rem 0;
 }
+
+.nutrition-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nutrition-info p {
+    margin-bottom: 0.5rem;
+}

@@ -1,23 +1,18 @@
 import './RecipePage.css';
-import { useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import {useState, useContext} from 'react';
+import {useParams} from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import {CounterContext} from '../../context/CounterContext.jsx';
 import SpoonacularRecipes from "../../services/api.js";
+import getNutritionInfo from '../../helpers/getNutrient.js';
 
-function extractNutrition(summary, nutrient) {
-    if (!summary) return null;
-    const nutrientSort = new RegExp(`(\\d+\\s*\\w*)\\s*${nutrient}`, 'i');
-    const match = summary.match(nutrientSort);
-    return match ? match[1] : null;
-}
 
 function Recipe() {
-    const { id } = useParams();
-    const endpoint = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
-    const { recipe, loading, error } = SpoonacularRecipes(endpoint);
+    const {id} = useParams();
+    const endpoint = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
+    const {recipe, loading, error} = SpoonacularRecipes(endpoint);
 
-    const { incrementCount, count } = useContext(CounterContext);
+    const {incrementCount, count} = useContext(CounterContext);
     const [disabled, setDisabled] = useState(false);
 
     const handleClick = () => {
@@ -55,15 +50,17 @@ function Recipe() {
 
                         <div className="recipe-summary-item">
                             <img src="/src/assets/kcal_icon.png" alt="calories"/>
-                            <span>{extractNutrition(recipe.summary, "calories")} calories</span>
+                            <span>{getNutritionInfo(recipe, "calories")}</span>
                         </div>
                     </div>
 
                     <div className="nutrition-info">
-                        <p>Nutrition info:</p>
-                        {extractNutrition(recipe.summary, "protein")} protein,
-                        {extractNutrition(recipe.summary, "fat")} fat and
-                        {extractNutrition(recipe.summary, "calories")} calories.
+                        <p>Nutrition information</p>
+                        <span>carbohydrates: {getNutritionInfo(recipe, "carbohydrates")}</span>
+                        <span> protein: {getNutritionInfo(recipe, "protein")}</span>
+                        <span> fat: {getNutritionInfo(recipe, "fat")}</span>
+
+
                     </div>
 
                 </div>
