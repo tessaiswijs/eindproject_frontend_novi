@@ -1,11 +1,11 @@
-import React, {createContext, useEffect, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
-import isTokenValid from '../helpers/isTokenValid';
+import isTokenValid from '../helpers/isTokenValid.js';
 
 export const AuthContext = createContext({});
 
-function AuthContextProvider({children}) {
+function AuthContextProvider({ children }) {
     const [auth, setAuth] = useState({
         isAuth: false,
         user: null,
@@ -45,7 +45,6 @@ function AuthContextProvider({children}) {
     const navigate = useNavigate();
 
     function login(userDetails) {
-        console.log('De login-functie uit de Context heeft ontvangen:', userDetails);
         localStorage.setItem('token', userDetails.token);
 
         setAuth({
@@ -56,8 +55,6 @@ function AuthContextProvider({children}) {
             },
             status: 'done',
         });
-
-        // navigate('/home');
     }
 
     function logout() {
@@ -69,7 +66,6 @@ function AuthContextProvider({children}) {
             status: 'done',
         });
 
-        console.log('Gebruiker is uitgelogd!');
         navigate('/');
     }
 
