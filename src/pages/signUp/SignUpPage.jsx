@@ -102,14 +102,12 @@ function SignUp() {
                         </section>
                     ) :
                     registered ? (
-                    <section className="signup-successfully-container"><span className="successfully-sentence">Registration successful!</span>
+                    <section className="login-successfully-container"><span className="successfully-sentence">Registration successful!</span>
                         <p className="what-next-container">You are one step away from your meal planning!
                             <span>Go to the <Link to="/signin">login page</Link> to log in.</span>
                         </p>
                     </section>
                 ) : (
-
-
 
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <InputField
