@@ -15,8 +15,8 @@ function SignIn() {
     const navigate = useNavigate();
     const isLoggedIn = localStorage.getItem("token");
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+    async function handleSubmit(error) {
+        error.preventDefault();
         toggleLoading(true);
         toggleError(false);
 
@@ -24,10 +24,9 @@ function SignIn() {
             const respons = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/login', {
                 email: email,
                 password: password,
-                roles: "user",
             }, {
                 headers: {
-                    'novi-education-project-id': '763de7dc-74e0-4372-8834-446a29370a51',
+                    'novi-education-project-id': `${import.meta.env.VITE_API_KEY_NOVI}`,
                 }
             });
 
@@ -35,9 +34,9 @@ function SignIn() {
 
         } catch (e) {
             if (axios.isCancel(e)) {
-                console.error('Request is canceled...');
+                console.error("Request is canceled...", e);
             } else {
-                console.error(e);
+                console.error("Request failed:", e);
                 toggleError(true);
             }
         } finally {
