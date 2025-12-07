@@ -12,9 +12,14 @@ function extractCalories(summary) {
     return match ? match[1] : null;
 }
 
+
 function Home() {
     const navigate = useNavigate();
-    const {recipes, loading, error} = SpoonacularRecipes(3);
+    // const {recipes, loading, error} = SpoonacularRecipes(3);
+
+    const endpoint = `https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
+    const { recipe, loading, error } = SpoonacularRecipes(endpoint);
+    const recipes = recipe?.recipes ?? [];
 
     return (
         <>

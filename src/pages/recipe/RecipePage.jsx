@@ -22,6 +22,12 @@ function Recipe() {
     const [error, setError] = useState(false);
     const [disabled, setDisabled] = useState(false);
 
+    const handleClick = () => {
+        incrementCount();
+        setDisabled(true);
+    };
+
+
     useEffect(() => {
         async function fetchRecipe() {
             try {
@@ -39,10 +45,6 @@ function Recipe() {
         fetchRecipe();
     }, [id]);
 
-    const handleClick = () => {
-        incrementCount();
-        setDisabled(true);
-    };
 
     if (loading) return <p className="loading-statement">Loading recipe...</p>;
     if (error || !recipe) return <p className="error-statement">Oeps. Something went wrong loading the recipe</p>;
