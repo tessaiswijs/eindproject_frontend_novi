@@ -1,9 +1,9 @@
 import './RecipePage.css';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import {CounterContext} from '../../context/CounterContext.jsx';
-import axios from 'axios';
+import SpoonacularRecipes from "../../services/api.js";
 
 function extractNutrition(summary, nutrient) {
     if (!summary) return null;
@@ -12,14 +12,12 @@ function extractNutrition(summary, nutrient) {
     return match ? match[1] : null;
 }
 
-
 function Recipe() {
     const { id } = useParams();
-    const { incrementCount, count } = useContext(CounterContext);
+    const endpoint = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
+    const { recipe, loading, error } = SpoonacularRecipes(endpoint);
 
-    const [recipe, setRecipe] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+    const { incrementCount, count } = useContext(CounterContext);
     const [disabled, setDisabled] = useState(false);
 
     const handleClick = () => {
@@ -27,30 +25,14 @@ function Recipe() {
         setDisabled(true);
     };
 
-
-    useEffect(() => {
-        async function fetchRecipe() {
-            try {
-                const {data} = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`);
-
-                setRecipe(data);
-            } catch (error) {
-                console.error(error);
-                setError(true);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchRecipe();
-    }, [id]);
-
-
     if (loading) return <p className="loading-statement">Loading recipe...</p>;
     if (error || !recipe) return <p className="error-statement">Oeps. Something went wrong loading the recipe</p>;
 
     return (
         <article className="recipe-description-container">
+
+            {loading && <p>loading recipes...</p>}
+            {error && <p>Oeps.. we where not able to show the recipes</p>}
 
             <section className="general-info-container">
                 <img className="food-image"
@@ -91,8 +73,8 @@ function Recipe() {
                 <div className="ingredient-container">
                     <h2>Ingredients</h2>
                     <ol className="ingredients">
-                        {recipe.extendedIngredients.map(ing => (
-                            <li key={ing.id}>{ing.original}</li>
+                        {recipe.extendedIngredients.map((ing, index) => (
+                            <li key={`${ing.id}-${index}`}>{ing.original}</li>
                         ))}
                     </ol>
                 </div>
@@ -100,8 +82,8 @@ function Recipe() {
                 <div className="method-container">
                     <h2>Method</h2>
                     <ol className="method-steps">
-                        {recipe.analyzedInstructions[0]?.steps.map(step => (
-                            <li key={step.number}>{step.step}</li>
+                        {recipe.analyzedInstructions[0]?.steps.map((step, index) => (
+                            <li key={`${step.number}-${index}`}>{step.step}</li>
                         ))}
                     </ol>
 

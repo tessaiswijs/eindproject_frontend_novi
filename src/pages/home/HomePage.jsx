@@ -3,7 +3,7 @@ import './HomePage.css';
 import RecipeCard from '../../components/recipeCard/RecipeCard.jsx';
 import Button from '../../components/button/Button.jsx';
 import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
-import SpoonacularRecipes from '../../api/SpoonacularRecipes.jsx';
+import SpoonacularRecipes from '../../services/api.js';
 
 
 function extractCalories(summary) {
@@ -15,8 +15,6 @@ function extractCalories(summary) {
 
 function Home() {
     const navigate = useNavigate();
-    // const {recipes, loading, error} = SpoonacularRecipes(3);
-
     const endpoint = `https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
     const { recipe, loading, error } = SpoonacularRecipes(endpoint);
     const recipes = recipe?.recipes ?? [];

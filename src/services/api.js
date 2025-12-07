@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function SpoonacularRecipes(endpoint) {
-    const [recipe, setRecipe] = useState([]);
+    const [recipe, setRecipe] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
