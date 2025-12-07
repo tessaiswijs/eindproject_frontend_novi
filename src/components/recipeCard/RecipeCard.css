@@ -14,6 +14,8 @@
 .recipe-image {
     width: 18rem;
     margin-right: 0.5rem;
+    border: 0.5rem #F4F1EB solid;
+    border-radius: 25px 0 0 25px;
 }
 
 .recipe-specification {
