@@ -12,13 +12,12 @@ function SignUp() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [registered, setRegistered] = useState(false);
-
+    const isLoggedIn = localStorage.getItem("token");
 
     async function handleSubmit(e) {
         e.preventDefault();
         setError('');
         setLoading(true);
-
 
         try {
             const response = await axios.post(
@@ -91,12 +90,20 @@ function SignUp() {
                 </section>
 
 
-                {/* ⭐ SUCCES BLOK (zoals jij vroeg) */}
-                {registered ? (
-                    <section className="signup-successfully-container">
-                        <h2 className="successfully-sentence">Registration successful!</h2>
-                        <p className="what-next-container">
-                            You are one step away from your meal planning! <br />
+                {isLoggedIn ? (
+                        <section className="login-successfully-container"> <span className="successfully-sentence">You are already logged in</span>
+
+                            <p className="what-next-container">What do you want to do?
+                                <span>Go to <Link to="/"> home </Link></span>
+                                <span>Do <Link to="/quiz"> the quiz </Link></span>
+                                <span>See your <Link to="/mealplanning"> weekplan </Link></span>
+                            </p>
+
+                        </section>
+                    ) :
+                    registered ? (
+                    <section className="signup-successfully-container"><span className="successfully-sentence">Registration successful!</span>
+                        <p className="what-next-container">You are one step away from your meal planning!
                             <span>Go to the <Link to="/signin">login page</Link> to log in.</span>
                         </p>
                     </section>
@@ -128,12 +135,11 @@ function SignUp() {
                     <Button type="submit" className="form-button" disabled={loading}>
                         {loading ? 'Registering...' : 'Register'}
                     </Button>
+                    <p>Do you have an account already? Then you can <Link to="/signin">login</Link></p>
                 </form>
                 )}
 
-                <p>
-                    Do you have an account already? Then you can <Link to="/signin">login</Link>
-                </p>
+
 
             </div>
         </div>

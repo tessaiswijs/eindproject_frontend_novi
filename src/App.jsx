@@ -2,10 +2,8 @@ import {useContext, useState} from 'react';
 import './App.css';
 import { Route, Navigate, Routes } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
-
 import NavBar from './components/navigator/Navbar.jsx';
 import FooterBar from './components/footer/FooterBar.jsx';
-
 import Home from './pages/home/HomePage';
 import MealPlanning from './pages/mealPlanning/mealPlanningPage';
 import Quiz from './pages/quiz/QuizPage';
