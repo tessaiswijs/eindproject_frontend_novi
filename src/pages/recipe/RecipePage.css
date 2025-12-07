@@ -84,3 +84,9 @@
 .add-recipe-button {
     margin: 2rem 0;
 }
+
+.error-statement, .loading-statement {
+    display: flex;
+    justify-content: center;
+    margin: 24rem 0;
+}

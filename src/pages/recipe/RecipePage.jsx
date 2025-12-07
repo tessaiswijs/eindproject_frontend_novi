@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import {CounterContext} from '../../context/CounterContext.jsx';
+import axios from 'axios';
 
 function extractNutrition(summary, nutrient) {
     if (!summary) return null;
@@ -24,10 +25,11 @@ function Recipe() {
     useEffect(() => {
         async function fetchRecipe() {
             try {
-                const res = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${import.meta.env.VITE_API_KEY}`);
-                const data = await res.json();
+                const {data} = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`);
+
                 setRecipe(data);
-            } catch (err) {
+            } catch (error) {
+                console.error(error);
                 setError(true);
             } finally {
                 setLoading(false);
@@ -42,8 +44,8 @@ function Recipe() {
         setDisabled(true);
     };
 
-    if (loading) return <p>Loading recipe...</p>;
-    if (error || !recipe) return <p>Oeps. Something went wrong loading te recipe</p>;
+    if (loading) return <p className="loading-statement">Loading recipe...</p>;
+    if (error || !recipe) return <p className="error-statement">Oeps. Something went wrong loading the recipe</p>;
 
     return (
         <article className="recipe-description-container">
@@ -107,7 +109,7 @@ function Recipe() {
                         onClick={handleClick}
                         disabled={disabled}>
                         <span>
-                            {disabled ? "Already added this recipe" : `Add recipe to weekmenu ${count}/7`}
+                            {disabled ? "Recipe is added" : `Add recipe to weekmenu ${count}/7`}
                         </span>
                     </Button>
                 </div>
