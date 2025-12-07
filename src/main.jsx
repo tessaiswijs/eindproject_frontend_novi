@@ -5,13 +5,16 @@ import AuthContextProvider from '../src/context/AuthContext.jsx';
 import App from './App.jsx'
 import './index.css'
 import CounterContextProvider from './context/CounterContext.jsx';
+import QuizContextProvider from './context/QuizContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     // <React.StrictMode>
         <Router>
             <AuthContextProvider>
                 <CounterContextProvider>
-                    <App/>
+                    <QuizContextProvider>
+                        <App/>
+                     </QuizContextProvider>
                 </CounterContextProvider>
             </AuthContextProvider>
         </Router>

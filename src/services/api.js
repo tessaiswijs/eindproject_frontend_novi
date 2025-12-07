@@ -18,8 +18,8 @@ function SpoonacularRecipes(endpoint) {
                     signal: controller.signal,
                 });
                 setRecipe(data);
-            } catch (error) {
-                console.error(error);
+            } catch (e) {
+                console.error(e);
                 setError(true);
             } finally {
                 setLoading(false);

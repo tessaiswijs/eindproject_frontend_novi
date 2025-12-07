@@ -2,12 +2,14 @@ import './QuizPage.css';
 import QuizQuestion from "../../components/quizQuestion/QuizQuestion.jsx";
 import Button from "../../components/button/Button.jsx";
 import {Link, useNavigate} from "react-router-dom";
-import {useState} from 'react';
 import HandleCheckboxChange from "../../helpers/HandleCheckboxChange.js";
+import { QuizContext } from "../../context/QuizContext.jsx";
+import { useContext, useState } from "react";
 
 function Quiz() {
     const navigate = useNavigate();
     const isLoggedIn = localStorage.getItem("token");
+    const { saveQuizData } = useContext(QuizContext);
 
     const cuisineOptions = [
         { value: "asian", label: "Asian" },
@@ -41,24 +43,18 @@ function Quiz() {
 
     const handleSubmit = () => {
         console.log("Form values submitted:", formValues);
-        // API call doen opslaan quiz data???
-
+        saveQuizData(formValues);
         navigate("/recipeoverview");
     };
 
     return (
         <>
             <main className="quiz-container">
-
                 <section className="quiz-header-container">
-
                     <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo Mealtap"/>
-
                     <h1>Quiz</h1>
 
                 </section>
-
-
                 {!isLoggedIn ? (
                     <section className="login-link-container"> I you want to do the quiz, please login first.
 

@@ -8,7 +8,7 @@ import getNutritionInfo from '../../helpers/getNutrient.js';
 
 
 function Recipe() {
-    const {id} = useParams();
+    const { id} = useParams();
     const endpoint = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
     const {recipe, loading, error} = SpoonacularRecipes(endpoint);
 
