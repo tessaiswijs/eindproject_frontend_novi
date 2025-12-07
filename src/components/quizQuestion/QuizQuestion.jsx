@@ -1,15 +1,21 @@
 import './QuizQuestion.css'
 
-function QuizQuestion({ variable, value, label }) {
+function QuizQuestion({ name, value, label, checked, onChange }) {
     return (
         <>
-
-        <label className="custom-checkbox">
-            <input type="checkbox" name={variable} value={value} />
-            <span></span>
-            {label}</label>
+            <label className="custom-checkbox">
+                <input
+                    type="checkbox"
+                    name={name}
+                    value={value}
+                    checked={checked}
+                    onChange={onChange}
+                />
+                <span></span>
+                {label}
+            </label>
         </>
-    )
+    );
 }
 
-export default QuizQuestion
+export default QuizQuestion;
