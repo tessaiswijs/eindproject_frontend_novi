@@ -97,7 +97,16 @@ function MealPlanning() {
 
                     <section className="grocerylist-section">
                         <h2> Grocery list</h2>
-                        <ol className="ingredient-list">
+                        <ul className="ingredient-list">
+                            <li>eif f</li>
+                            <li>eidfg</li>
+                            <li>ei dg</li>
+                            <li>ei dg</li>
+                            <li>ei gdf</li>
+                            <li>eig df</li>
+                            <li>ei </li>
+                            <li>ei</li>
+                            <li>ei dsfvsdrgrgrgrtg rtgrgrt trhrthrts </li>
                             <li>ei</li>
                             <li>ei</li>
                             <li>ei</li>
@@ -106,27 +115,16 @@ function MealPlanning() {
                             <li>ei</li>
                             <li>ei</li>
                             <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                        </ol>
+                        </ul>
 
-                        <Button
-                            type="button"
-                            className="send-grocery-list-button"
-                            onClick={handleSubmit}>
-                        <span>
-                            send grocery list to my email address
-                        </span>
-                        </Button>
+                        {/*<Button*/}
+                        {/*    type="button"*/}
+                        {/*    className="send-grocery-list-button"*/}
+                        {/*    onClick={handleSubmit}>*/}
+                        {/*<span>*/}
+                        {/*    send grocery list to my email address*/}
+                        {/*</span>*/}
+                        {/*</Button>*/}
 
 
                     </section>

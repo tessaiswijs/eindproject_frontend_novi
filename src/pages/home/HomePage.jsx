@@ -4,13 +4,7 @@ import RecipeCard from '../../components/recipeCard/RecipeCard.jsx';
 import Button from '../../components/button/Button.jsx';
 import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
 import SpoonacularRecipes from '../../services/api.js';
-
-
-function extractCalories(summary) {
-    if (!summary) return null;
-    const match = summary.match(/(\d+)\s*calories/i);
-    return match ? match[1] : null;
-}
+import getNutritionInfo from '../../helpers/getNutrient.js';
 
 
 function Home() {
@@ -103,7 +97,7 @@ function Home() {
                             title={recipe.title}
                             image={recipe.image}
                             time={recipe.readyInMinutes}
-                            kcal={extractCalories(recipe.summary)}
+                            kcal={getNutritionInfo(recipe, "calories")}
                             onClick={() => navigate(`/recipe/${recipe.id}`)}
                         />
 

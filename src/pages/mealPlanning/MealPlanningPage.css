@@ -19,6 +19,30 @@
 }
 
 /*////////////////////////
+    1. Styling grocery list
+////////////////////////*/
+
+.grocerylist-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10rem;
+}
+
+.grocerylist-section h2 {
+    margin: 3rem;
+}
+
+.ingredient-list  {
+    list-style-type: disc;
+    columns: 2;
+    column-gap: 8rem;
+    margin: 0 2rem  0 8rem;
+    flex-wrap: wrap;
+}
+
+
+/*////////////////////////
     1. Styling alternative content when not logged in
 ////////////////////////*/
 
@@ -30,3 +54,4 @@
 .login-sentence {
     margin: 2rem 0;
 }
+
