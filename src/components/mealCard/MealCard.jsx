@@ -5,6 +5,7 @@ function MealCard({ onClick, onDelete, title, image }) {
         <article className="added-recipe-card" onClick={onClick}>
             <img className="added-recipe-image" src={image} alt={title}/>
 
+
             <button
                 type="button"
                 className="trashcan-container"

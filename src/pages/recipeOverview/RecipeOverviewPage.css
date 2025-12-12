@@ -1,7 +1,17 @@
+
+.recipe-overview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .recipe-overview-header-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5rem;
+    margin: 5rem 0 5rem 0;
 }
 
+.alternative-recipe-article-section {
+    margin: 10rem 0 5rem 0;
+}

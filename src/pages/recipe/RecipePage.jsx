@@ -18,6 +18,10 @@ function Recipe() {
 
     const {selectedRecipes, addRecipe} = useContext(RecipeContext);
 
+    const isAlreadyAdded = recipe
+            ? selectedRecipes.some(r => r.id === recipe.id)
+            : false;
+
     const handleClick = () => {
         incrementCount();
         setDisabled(true);
@@ -97,9 +101,10 @@ function Recipe() {
                             type="button"
                             className="add-recipe-button"
                             onClick={handleClick}
-                            disabled={disabled}>
+                            disabled={disabled || isAlreadyAdded}>
                         <span>
-                            {disabled ? "Recipe is added" : `Add recipe to weekmenu ${count}/7`}
+                            {disabled || isAlreadyAdded
+                                ? "Recipe is added" : `Add recipe to weekmenu ${count}/7`}
                         </span>
                         </Button>
                     )}

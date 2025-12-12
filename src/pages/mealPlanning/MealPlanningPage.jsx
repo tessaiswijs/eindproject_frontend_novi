@@ -25,11 +25,8 @@ function MealPlanning() {
     return (
         <>
             <header className="page-header-mealplanpage">
-
-                <h1>My weekplan</h1>
-
                 <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
-
+                <h1>My weekplan</h1>
                 <p>these are the recipes you choose. You can add up to 7 recipes for every day of de week.
                     If jou want to choose another recipe you can click on the trashcan.</p>
             </header>
@@ -56,7 +53,7 @@ function MealPlanning() {
                                             title={recipe.title}
                                             image={recipe.image}
                                             onClick={() => navigate(`/recipe/${recipe.id}`)}
-                                            onDelete={() => handleDeleteRecipe(recipe)}
+                                            onDelete={() => handleDeleteRecipe(recipe.id)}
                                         />
                                     ))
                                 )}

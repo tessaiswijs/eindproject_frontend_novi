@@ -26,7 +26,7 @@
 
 .image-container-recipe-page {
     overflow: hidden;
-    width: 450px;
+    width: 35rem;
 }
 
 .food-image {
@@ -73,7 +73,7 @@
 
 .ingredient-container {
     background-color: #D8B35D;
-    width: 28rem;
+    width: 35rem;
     padding: 5rem 4.5rem;
 }
 

@@ -32,7 +32,7 @@
 .added-recipe-titel-container {
     text-align: center;
     padding: 0.5rem 0;
-    margin-top: -3rem;   /* dit is niet hoe het hoort, maar ik kom er niet achter waarom daar ruimte zit */
+    margin-top: -3rem;
 }
 
 .added-recipe-title {

@@ -1,14 +1,17 @@
-import {createContext, useState} from 'react';
+import { createContext, useState } from 'react';
 
 export const QuizContext = createContext({});
 
 function QuizContextProvider({ children }) {
 
-    const [quizData, setQuizData] = useState(null);
+    const [quizData, setQuizData] = useState(() => {
+        const saved = localStorage.getItem('quizData');
+        return saved ? JSON.parse(saved) : null;
+    });
 
-    // Functie om quizdata bij te werken
     const saveQuizData = (data) => {
         setQuizData(data);
+        localStorage.setItem('quizData', JSON.stringify(data));
     };
 
     const data = {
@@ -20,7 +23,7 @@ function QuizContextProvider({ children }) {
         <QuizContext.Provider value={data}>
             {children}
         </QuizContext.Provider>
-    )
+    );
 }
 
 export default QuizContextProvider;
