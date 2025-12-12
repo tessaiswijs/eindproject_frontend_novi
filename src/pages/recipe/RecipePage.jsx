@@ -1,6 +1,6 @@
 import './RecipePage.css';
 import {useState, useContext} from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import {CounterContext} from '../../context/CounterContext.jsx';
 import SpoonacularRecipes from "../../services/api.js";
@@ -9,14 +9,14 @@ import {RecipeContext} from "../../context/RecipeContext.jsx";
 
 
 function Recipe() {
-    const { id} = useParams();
+    const {id} = useParams();
     const endpoint = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
     const {recipe, loading, error} = SpoonacularRecipes(endpoint);
 
     const {incrementCount, count} = useContext(CounterContext);
     const [disabled, setDisabled] = useState(false);
 
-    const { selectedRecipes, addRecipe } = useContext(RecipeContext);
+    const {selectedRecipes, addRecipe} = useContext(RecipeContext);
 
     const handleClick = () => {
         incrementCount();
@@ -37,9 +37,9 @@ function Recipe() {
 
             <section className="general-info-container">
                 <picture className="image-container-recipe-page">
-                <img className="food-image"
-                     src={recipe.image}
-                     alt={recipe.title}/>
+                    <img className="food-image"
+                         src={recipe.image}
+                         alt={recipe.title}/>
                 </picture>
 
                 <div className="recipe-info-container">
@@ -92,15 +92,26 @@ function Recipe() {
                         ))}
                     </ol>
 
-                    <Button
-                        type="button"
-                        className="add-recipe-button"
-                        onClick={handleClick}
-                        disabled={disabled}>
+                    {selectedRecipes.length < 7 && (
+                        <Button
+                            type="button"
+                            className="add-recipe-button"
+                            onClick={handleClick}
+                            disabled={disabled}>
                         <span>
                             {disabled ? "Recipe is added" : `Add recipe to weekmenu ${count}/7`}
                         </span>
-                    </Button>
+                        </Button>
+                    )}
+
+                    {selectedRecipes.length >= 7 && (
+                        <p className="seven-recipes-added"> You cannot at recipes anymore, because you already added 7
+                            recipes. Go to
+                            <Link to="/mealplanning"> your meal planning </Link>
+                             to see and if you wish to change your added recipes.
+                        </p>
+                    )}
+
                 </div>
             </section>
 

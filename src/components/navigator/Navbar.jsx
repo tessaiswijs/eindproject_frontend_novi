@@ -30,7 +30,7 @@ function NavBar() {
                 <li>
                     <NavLink to="/MealPlanning" className={({ isActive }) => isActive === true ?
                         "active-link" : "default-link"}>
-                        Mealplanning
+                        Meal planning
                     </NavLink>
 
                     {count !== 0 && (

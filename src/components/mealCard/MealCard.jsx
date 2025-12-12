@@ -1,21 +1,26 @@
 import './MealCard.css'
 
-function Mealcard({onClick, title, image}) {
+function MealCard({ onClick, onDelete, title, image }) {
     return (
-        <>
-            <article className="added-recipe-card" onClick={onClick}>
-                <img className="added-recipe-image" src={image} alt={title}/>
+        <article className="added-recipe-card" onClick={onClick}>
+            <img className="added-recipe-image" src={image} alt={title}/>
 
-                <span className="trashcan-container">
-                    <img className="trashcan-icon" src="/src/assets/trashcan_icon.png" alt="trashcan"/>
-                </span>
+            <button
+                type="button"
+                className="trashcan-container"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete && onDelete();
+                }}
+            >
+                <img className="trashcan-icon" src="/src/assets/trashcan_icon.png" alt="Delete recipe"/>
+            </button>
 
-                <div className="added-recipe-titel-container">
-                    <h4 className="added-recipe-title">{title}</h4>
-                </div>
-            </article>
-        </>
+            <div className="added-recipe-titel-container">
+                <h4 className="added-recipe-title">{title}</h4>
+            </div>
+        </article>
     )
 }
 
-export default Mealcard;
+export default MealCard;

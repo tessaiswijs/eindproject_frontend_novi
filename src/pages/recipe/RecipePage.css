@@ -66,15 +66,15 @@
 }
 
 .method-container {
-    max-width: 35rem;
+    width: 35rem;
     background-color: #F4F1EB;
     padding: 0 5rem;
 }
 
 .ingredient-container {
     background-color: #D8B35D;
-    max-width: 450px;
-    padding: 50px 90px;;
+    width: 28rem;
+    padding: 5rem 4.5rem;
 }
 
 .ingredients li,
@@ -84,7 +84,7 @@
 
 .ingredient-container h2,
 .method-container h2 {
-    margin: 0 0 1rem -1rem;
+    margin: 0 0 1rem 0;
 }
 
 .add-recipe-button {
@@ -104,4 +104,8 @@
 
 .nutrition-info p {
     margin-bottom: 0.5rem;
+}
+
+.seven-recipes-added {
+    margin: 3rem 0 5rem 0;
 }

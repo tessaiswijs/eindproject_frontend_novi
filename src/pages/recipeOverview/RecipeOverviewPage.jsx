@@ -15,7 +15,7 @@ function RecipeOverview() {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        if (!quizData) return; // wacht tot quizdata beschikbaar is
+        if (!quizData) return;
 
         const controller = new AbortController();
 
@@ -59,7 +59,7 @@ function RecipeOverview() {
         <>
             <section className="recipe-overview-header-section">
                 <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
-                <h1>Recepten op basis van jouw voorkeuren</h1>
+                <h1>Recipes based on your preferences</h1>
             </section>
 
             <section className="recipe-article-section">

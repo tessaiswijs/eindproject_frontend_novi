@@ -18,7 +18,7 @@ function Home() {
         <>
             <header className="page-header">
                 <div className="title-section">
-                    <h1>Easy Mealplanning</h1>
+                    <h1>Easy Meal planning</h1>
                     <p className="header_text">Our meal plan website helps you enjoy healthy, balanced, and stress-free
                         meals every single day. Whether your goal is to lose weight, build muscle, save time, or simply
                         find fresh inspiration in the kitchen — we make it easy.

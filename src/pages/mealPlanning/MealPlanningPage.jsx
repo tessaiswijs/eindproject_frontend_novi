@@ -1,20 +1,22 @@
 import './MealPlanningPage.css'
 import MealCard from '../../components/mealCard/MealCard.jsx';
-import Button from "../../components/button/Button.jsx";
+// import Button from "../../components/button/Button.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {RecipeContext} from "../../context/RecipeContext.jsx";
-import {useContext, useState, useEffect} from "react";
+import {useContext, useEffect} from "react";
+import {CounterContext} from "../../context/CounterContext.jsx";
 
 
 function MealPlanning() {
-    // const handleSubmit = () => {
-    //     // nog nakijken hoe gegevens moeten worden opgeslagen om te gebruiken
-    //     // voor het ophalen van de API, daarvoor hier nog toevoegen
-    // };
-
+    const { selectedRecipes, deleteRecipe } = useContext(RecipeContext);
+    const {decrementCount} = useContext(CounterContext);
     const navigate = useNavigate();
-    const {selectedRecipes} = useContext(RecipeContext);
     const isLoggedIn = localStorage.getItem("token");
+
+    const handleDeleteRecipe = (recipe) => {
+        decrementCount();
+        deleteRecipe(recipe)
+    };
 
     useEffect(() => {
         console.log("Selected recipes in context:", selectedRecipes);
@@ -45,8 +47,7 @@ function MealPlanning() {
 
 
                 <main className="weekplan-section">
-                    <div className="weekplan-container">
-                        <article>
+                        <article className="weekplan-container">
 
                             {selectedRecipes.length === 0 ? (<p>No recipes added yet.</p>) :
                                 (selectedRecipes.map(recipe => (
@@ -55,14 +56,12 @@ function MealPlanning() {
                                             title={recipe.title}
                                             image={recipe.image}
                                             onClick={() => navigate(`/recipe/${recipe.id}`)}
+                                            onDelete={() => handleDeleteRecipe(recipe)}
                                         />
                                     ))
                                 )}
 
                         </article>
-
-
-                    </div>
 
                     <section className="grocerylist-section">
                         <h2> Grocery list</h2>
