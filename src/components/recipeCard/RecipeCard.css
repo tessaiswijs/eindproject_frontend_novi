@@ -6,19 +6,17 @@
     border-radius: 25px 0 25px 25px;
     height: 12rem;
     overflow: hidden;
-
 }
 
 .recipe-image {
     width: 18rem;
     margin-right: 0.5rem;
-    border: 0.5rem #F4F1EB solid;
     border-radius: 25px 0 0 25px;
 }
 
 .recipe-specification {
     text-align: center;
-    max-width: 140px;
+    width: 10rem;
     padding-bottom: 0.7rem;
 }
 
