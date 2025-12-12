@@ -4,13 +4,14 @@ import RecipeCard from '../../components/recipeCard/RecipeCard.jsx';
 import Button from '../../components/button/Button.jsx';
 import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
 import SpoonacularRecipes from '../../services/api.js';
-import getNutritionInfo from '../../helpers/getNutrient.js';
+
+// import getNutritionInfo from '../../helpers/getNutrient.js';
 
 
 function Home() {
     const navigate = useNavigate();
-    const endpoint = `https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
-    const { recipe, loading, error } = SpoonacularRecipes(endpoint);
+    const endpoint = `https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
+    const {recipe, loading, error} = SpoonacularRecipes(endpoint);
     const recipes = recipe?.recipes ?? [];
 
     return (
@@ -97,7 +98,7 @@ function Home() {
                             title={recipe.title}
                             image={recipe.image}
                             time={recipe.readyInMinutes}
-                            kcal={getNutritionInfo(recipe, "calories")}
+                            kcal={recipe}
                             onClick={() => navigate(`/recipe/${recipe.id}`)}
                         />
 

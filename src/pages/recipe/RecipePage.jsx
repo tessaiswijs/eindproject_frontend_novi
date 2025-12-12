@@ -5,6 +5,7 @@ import Button from '../../components/button/Button.jsx';
 import {CounterContext} from '../../context/CounterContext.jsx';
 import SpoonacularRecipes from "../../services/api.js";
 import getNutritionInfo from '../../helpers/getNutrient.js';
+import {RecipeContext} from "../../context/RecipeContext.jsx";
 
 
 function Recipe() {
@@ -15,9 +16,14 @@ function Recipe() {
     const {incrementCount, count} = useContext(CounterContext);
     const [disabled, setDisabled] = useState(false);
 
+    const { selectedRecipes, addRecipe } = useContext(RecipeContext);
+
     const handleClick = () => {
         incrementCount();
         setDisabled(true);
+        addRecipe(recipe);
+
+        console.log("recipe list:", selectedRecipes);
     };
 
     if (loading) return <p className="loading-statement">Loading recipe...</p>;
@@ -30,9 +36,11 @@ function Recipe() {
             {error && <p>Oeps.. we where not able to show the recipes</p>}
 
             <section className="general-info-container">
+                <picture className="image-container-recipe-page">
                 <img className="food-image"
                      src={recipe.image}
                      alt={recipe.title}/>
+                </picture>
 
                 <div className="recipe-info-container">
                     <h2>{recipe.title}</h2>

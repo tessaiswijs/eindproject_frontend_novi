@@ -1,16 +1,24 @@
 import './MealPlanningPage.css'
 import MealCard from '../../components/mealCard/MealCard.jsx';
 import Button from "../../components/button/Button.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {RecipeContext} from "../../context/RecipeContext.jsx";
+import {useContext, useState, useEffect} from "react";
 
 
 function MealPlanning() {
-    const handleSubmit = () => {
-        // nog nakijken hoe gegevens moeten worden opgeslagen om te gebruiken
-        // voor het ophalen van de API, daarvoor hier nog toevoegen
-    };
+    // const handleSubmit = () => {
+    //     // nog nakijken hoe gegevens moeten worden opgeslagen om te gebruiken
+    //     // voor het ophalen van de API, daarvoor hier nog toevoegen
+    // };
 
+    const navigate = useNavigate();
+    const {selectedRecipes} = useContext(RecipeContext);
     const isLoggedIn = localStorage.getItem("token");
+
+    useEffect(() => {
+        console.log("Selected recipes in context:", selectedRecipes);
+    }, [selectedRecipes]);
 
     return (
         <>
@@ -25,12 +33,13 @@ function MealPlanning() {
             </header>
 
             {!isLoggedIn ? (
-                <section className="login-link-container"> If you want to make or see your meal planning, please login first.
+                <section className="login-link-container"> If you want to make or see your meal planning, please login
+                    first.
 
                     <p className="login-sentence">If you have an account go to<Link
                         to="/signin"> the inlog page. </Link>
-                     Otherwise register at the<Link
-                        to="/signup"> the registration page.</Link></p>
+                        Otherwise register at the<Link
+                            to="/signup"> the registration page.</Link></p>
                 </section>
             ) : (
 
@@ -38,60 +47,20 @@ function MealPlanning() {
                 <main className="weekplan-section">
                     <div className="weekplan-container">
                         <article>
-                            <MealCard
-                                title="Noedels met ei en kip en patat en degrgr efrghioag"
-                                image='src/assets/IMG_3101.JPG'
-                                onClick={() => navigate(`/recipe/`)}
-                            />
+
+                            {selectedRecipes.length === 0 ? (<p>No recipes added yet.</p>) :
+                                (selectedRecipes.map(recipe => (
+                                        <MealCard
+                                            key={recipe.id}
+                                            title={recipe.title}
+                                            image={recipe.image}
+                                            onClick={() => navigate(`/recipe/${recipe.id}`)}
+                                        />
+                                    ))
+                                )}
+
                         </article>
 
-                        <article>
-                            <MealCard
-                                title="Noedels met ei en kip"
-                                image='src/assets/IMG_3101.JPG'
-                                onClick={() => navigate(`/recipe/`)}
-                            />
-                        </article>
-
-                        <article>
-                            <MealCard
-                                title="Noedels met ei en kip"
-                                image='src/assets/IMG_3101.JPG'
-                                onClick={() => navigate(`/recipe/`)}
-                            />
-                        </article>
-
-                        <article>
-                            <MealCard
-                                title="Noedels met ei en kip"
-                                image='src/assets/IMG_3101.JPG'
-                                onClick={() => navigate(`/recipe/`)}
-                            />
-                        </article>
-
-                        <article>
-                            <MealCard
-                                title="Noedels met ei en kip"
-                                image='src/assets/IMG_3101.JPG'
-                                onClick={() => navigate(`/recipe/`)}
-                            />
-                        </article>
-
-                        <article>
-                            <MealCard
-                                title="Noedels met ei en kip"
-                                image='src/assets/IMG_3101.JPG'
-                                onClick={() => navigate(`/recipe/`)}
-                            />
-                        </article>
-
-                        <article>
-                            <MealCard
-                                title="Noedels met ei en kip"
-                                image='src/assets/IMG_3101.JPG'
-                                onClick={() => navigate(`/recipe/`)}
-                            />
-                        </article>
 
                     </div>
 
@@ -104,9 +73,9 @@ function MealPlanning() {
                             <li>ei dg</li>
                             <li>ei gdf</li>
                             <li>eig df</li>
-                            <li>ei </li>
                             <li>ei</li>
-                            <li>ei dsfvsdrgrgrgrtg rtgrgrt trhrthrts </li>
+                            <li>ei</li>
+                            <li>ei dsfvsdrgrgrgrtg rtgrgrt trhrthrts</li>
                             <li>ei</li>
                             <li>ei</li>
                             <li>ei</li>

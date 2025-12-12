@@ -13,9 +13,9 @@
     flex-wrap: wrap;
 }
 
-.general-info-container img {
-    width: 35rem;
-}
+/*.general-info-container img {*/
+/*    width: 35rem;*/
+/*}*/
 
 .ingredients-method-container {
     display: flex;
@@ -24,9 +24,15 @@
     align-self: stretch;
 }
 
+.image-container-recipe-page {
+    overflow: hidden;
+    width: 450px;
+}
+
 .food-image {
-    max-width: 35rem;
     width: 100%;
+    height: 100%;
+
 }
 
 .recipe-info-container img {
@@ -67,8 +73,8 @@
 
 .ingredient-container {
     background-color: #D8B35D;
-    max-width: 35rem;
-    padding: 4rem 5rem;
+    max-width: 450px;
+    padding: 50px 90px;;
 }
 
 .ingredients li,

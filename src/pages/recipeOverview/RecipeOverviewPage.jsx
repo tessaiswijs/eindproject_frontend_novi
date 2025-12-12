@@ -26,7 +26,6 @@ function RecipeOverview() {
             try {
                 const params = new URLSearchParams();
 
-                // Gebruik quizData in plaats van props.filters
                 if (quizData.maxReadyTime) params.append('maxReadyTime', quizData.maxReadyTime);
                 if (quizData.maxCalories) params.append('maxCalories', quizData.maxCalories);
                 if (quizData.minProtein) params.append('minProtein', quizData.minProtein);
@@ -38,7 +37,7 @@ function RecipeOverview() {
                 params.append('number', '50');
 
                 const { data } = await axios.get(
-                    `https://api.spoonacular.com/recipes/complexSearch?${params.toString()}&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`,
+                    `https://api.spoonacular.com/recipes/complexSearch?${params.toString()}&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`,
                     { signal: controller.signal }
                 );
 
@@ -73,7 +72,7 @@ function RecipeOverview() {
                         title={recipe.title}
                         image={recipe.image}
                         time={recipe.readyInMinutes}
-                        kcal={getNutritionInfo(recipe, "calories")}
+                        kcal={recipe}
                         onClick={() => navigate(`/recipe/${recipe.id}`)}
                     />
                 ))}

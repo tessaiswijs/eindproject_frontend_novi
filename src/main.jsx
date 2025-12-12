@@ -6,6 +6,7 @@ import App from './App.jsx'
 import './index.css'
 import CounterContextProvider from './context/CounterContext.jsx';
 import QuizContextProvider from './context/QuizContext.jsx';
+import RecipeContextProvider from './context/RecipeContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     // <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <AuthContextProvider>
                 <CounterContextProvider>
                     <QuizContextProvider>
-                        <App/>
+                        <RecipeContextProvider>
+                            <App/>
+                        </RecipeContextProvider>
                      </QuizContextProvider>
                 </CounterContextProvider>
             </AuthContextProvider>
