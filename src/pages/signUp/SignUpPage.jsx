@@ -8,10 +8,12 @@ import InputField from '../../components/inputField/InputField.jsx';
 function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [registered, setRegistered] = useState(false);
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -19,11 +21,12 @@ function SignUp() {
         setLoading(true);
 
         try {
-            const response = await axios.post(
+            const respons = await axios.post(
                 'https://novi-backend-api-wgsgz.ondigitalocean.app/api/users',
                 {
                     email: email,
                     password: password,
+                    role: "user"
                 },
                 {
                     headers: {
@@ -31,31 +34,18 @@ function SignUp() {
                     },
                 }
             );
-
-            if (response.status === 201) {
-                // Gebruiker is succesvol aangemaakt, doorsturen naar login
+            if (respons.status === 201) {
                 setRegistered(true);
+                console.log("registration successful:", respons.data);
             }
-        } catch (e) {
-            console.error(e);
-            if (e.response) {
-                // De server heeft een fout teruggegeven
-                if (e.response.status === 400) {
-                    setError('This account already exists. Please try another email address or log in.');
-                } else if (e.response.status === 401) {
-                    setError('Unauthorized request.');
-                } else if (e.response.status === 403) {
-                    setError('You are not allowed to create a user.');
-                } else {
-                    setError('An unknown error occurred. Please try again.');
-                }
-            } else {
-                // Geen response van de server, bijvoorbeeld netwerkfout
-                setError('Unable to connect to the server. Please try again later.');
-            }
-        }
 
-        setLoading(false);
+        } catch (e) {
+            console.error("Request failed:", e);
+            setError('Something went wrong. Please try again.');
+        }
+        finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -124,8 +114,6 @@ function SignUp() {
                     <p>Do you have an account already? Then you can <Link to="/signin">login</Link></p>
                 </form>
                 )}
-
-
 
             </div>
         </div>
