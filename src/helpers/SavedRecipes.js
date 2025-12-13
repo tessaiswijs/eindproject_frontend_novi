@@ -7,6 +7,7 @@ export function SavedRecipes() {
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         if (!user) {
@@ -19,18 +20,16 @@ export function SavedRecipes() {
             try {
                 setLoading(true);
                 const response = await axios.get(
-                    'https://novi-backend-api-wgsgz.ondigitalocean.app/api/recipes',
+                    `https://novi-backend-api-wgsgz.ondigitalocean.app/api/users/${user.userId}/recipes`,
                     {
                         headers: {
                             'novi-education-project-id': `${import.meta.env.VITE_API_KEY_NOVI}`,
-                            'Authorization': `Bearer ${user.token}`
-                        },
-                        params: {
-                            userId: user.id
+                            'Authorization': `Bearer ${token}`
                         }
                     }
                 );
                 setRecipes(response.data);
+                console.log(response.data);
             } catch (e) {
                 console.error(e);
                 setError(true);
@@ -49,16 +48,16 @@ export function SavedRecipes() {
                 'https://novi-backend-api-wgsgz.ondigitalocean.app/api/recipes',
                 {
                     ...newRecipe,
-                    userId: user.id,
-                    createdAt: new Date().toISOString()
+                    userId: user.userId,
                 },
                 {
                     headers: {
                         'novi-education-project-id': `${import.meta.env.VITE_API_KEY_NOVI}`,
-                        'Authorization': `Bearer ${user.token}`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             );
+            console.log("Recipe added:", response.data);
             setRecipes(prev => [...prev, response.data]);
         } catch (e) {
             console.error(e);
@@ -74,7 +73,7 @@ export function SavedRecipes() {
                 {
                     headers: {
                         'novi-education-project-id': `${import.meta.env.VITE_API_KEY_NOVI}`,
-                        'Authorization': `Bearer ${user.token}`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             );

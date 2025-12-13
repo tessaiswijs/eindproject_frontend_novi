@@ -26,7 +26,7 @@ function SignUp() {
                 {
                     email: email,
                     password: password,
-                    role: "user"
+                    roles: ["user"]
                 },
                 {
                     headers: {

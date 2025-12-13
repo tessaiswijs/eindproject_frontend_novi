@@ -2,8 +2,6 @@ import './RecipePage.css';
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
-import { CounterContext } from '../../context/CounterContext.jsx';
-import { useContext } from 'react';
 import SpoonacularRecipes from "../../services/api.js";
 import getNutritionInfo from '../../helpers/getNutrient.js';
 import { SavedRecipes } from '../../helpers/SavedRecipes.js';
@@ -13,18 +11,23 @@ function Recipe() {
     const endpoint = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
     const { recipe, loading, error } = SpoonacularRecipes(endpoint);
 
-    const { incrementCount, count } = useContext(CounterContext);
     const [disabled, setDisabled] = useState(false);
 
     const { recipes: savedRecipes, addRecipe: addRecipeToDatabase } = SavedRecipes();
 
     const isAlreadyAdded = recipe
-        ? savedRecipes.some(recipeToAdd => recipeToAdd.externalRecipeId === recipe.externalRecipeId)
+        ? savedRecipes.some(recipeToAdd => recipeToAdd.externalRecipeId === recipe.id)
         : false;
 
     const handleClick = async () => {
         if (!recipe) {
             console.log("No recipe loaded yet.");
+            return;
+        }
+
+        if (isAlreadyAdded) {
+            alert("This recipe is already added!");
+            setDisabled(true)
             return;
         }
 
@@ -34,7 +37,6 @@ function Recipe() {
         }
 
         setDisabled(true);
-        incrementCount();
 
         try {
             await addRecipeToDatabase({
@@ -117,7 +119,7 @@ function Recipe() {
                             <span>
                                 {disabled || isAlreadyAdded
                                     ? "Recipe is added"
-                                    : `Add recipe to weekmenu ${count}/7`}
+                                    : `Add recipe to weekmenu`}
                             </span>
                         </Button>
                     ) : (

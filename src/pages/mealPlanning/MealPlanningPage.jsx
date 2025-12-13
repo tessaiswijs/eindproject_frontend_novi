@@ -4,13 +4,11 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import MealCard from '../../components/mealCard/MealCard.jsx';
-import { CounterContext } from "../../context/CounterContext.jsx";
 import { AuthContext } from '../../context/AuthContext.jsx';
 
 function MealPlanning() {
     const [recipes, setRecipes] = useState([]);
     const [error, setError] = useState(false);
-    const { decrementCount } = useContext(CounterContext);
     const { user, isAuth } = useContext(AuthContext);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
@@ -34,6 +32,7 @@ function MealPlanning() {
 
                 console.log("Meal planning fetched:", response.data);
                 setRecipes(response.data);
+
             } catch (e) {
                 console.error(e);
                 setError(true);
@@ -56,7 +55,7 @@ function MealPlanning() {
             );
 
             setRecipes(prev => prev.filter(r => r.id !== recipeId));
-            decrementCount();
+
         } catch (e) {
             console.error("Error deleting recipe:", e);
         }

@@ -53,6 +53,7 @@ function AuthContextProvider({ children }) {
 
     function logout() {
         localStorage.removeItem('token');
+        localStorage.removeItem('quizData');
 
         setAuth({
             isAuth: false,

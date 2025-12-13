@@ -5,14 +5,15 @@ import Button from '../../components/button/Button.jsx';
 import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
 import SpoonacularRecipes from '../../services/api.js';
 
-// import getNutritionInfo from '../../helpers/getNutrient.js';
-
+// hier nog fixen dat het aantal kcal uit de tekst wordt extracted de random? werkt niet hetzelfde als complexSearch
 
 function Home() {
     const navigate = useNavigate();
-    const endpoint = `https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
+    const endpoint = `https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&addRecipeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
     const {recipe, loading, error} = SpoonacularRecipes(endpoint);
     const recipes = recipe?.recipes ?? [];
+
+    console.log(recipe)
 
     return (
         <>

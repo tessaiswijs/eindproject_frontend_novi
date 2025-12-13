@@ -3,12 +3,10 @@ import {useNavigate, NavLink} from 'react-router-dom';
 import {AuthContext} from '../../context/AuthContext.jsx';
 import './Navbar.css';
 import Button from '../../components/button/Button.jsx';
-import {CounterContext} from "../../context/CounterContext.jsx";
 
 function NavBar() {
     const {isAuth, logout} = useContext(AuthContext);
     const navigate = useNavigate();
-    const { count } = useContext(CounterContext);
 
     return (
         <nav>
@@ -32,10 +30,6 @@ function NavBar() {
                         "active-link" : "default-link"}>
                         Meal planning
                     </NavLink>
-
-                    {count !== 0 && (
-                        <span className="recipe-counter">{count}/7</span>
-                    )}
 
                 </li>
             </ul>
