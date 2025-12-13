@@ -1,103 +1,104 @@
-import './MealPlanningPage.css'
-import MealCard from '../../components/mealCard/MealCard.jsx';
-// import Button from "../../components/button/Button.jsx";
-import {Link, useNavigate} from "react-router-dom";
-import {RecipeContext} from "../../context/RecipeContext.jsx";
-import {useContext, useEffect} from "react";
-import {CounterContext} from "../../context/CounterContext.jsx";
+import './MealPlanningPage.css';
+import axios from "axios";
 
+import { useEffect, useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import MealCard from '../../components/mealCard/MealCard.jsx';
+import { CounterContext } from "../../context/CounterContext.jsx";
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 function MealPlanning() {
-    const { selectedRecipes, deleteRecipe } = useContext(RecipeContext);
-    const {decrementCount} = useContext(CounterContext);
+    const [recipes, setRecipes] = useState([]);
+    const [error, setError] = useState(false);
+    const { decrementCount } = useContext(CounterContext);
+    const { user, isAuth } = useContext(AuthContext);
     const navigate = useNavigate();
-    const isLoggedIn = localStorage.getItem("token");
-
-    const handleDeleteRecipe = (recipe) => {
-        decrementCount();
-        deleteRecipe(recipe)
-    };
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
-        console.log("Selected recipes in context:", selectedRecipes);
-    }, [selectedRecipes]);
+        if (!isAuth || !user) return;
+
+        async function fetchMealPlanning() {
+            setError(false);
+
+            try {
+                const response = await axios.get(
+                    `https://novi-backend-api-wgsgz.ondigitalocean.app/api/users/${user.userId}/recipes`,
+                    {
+                        headers: {
+                            'novi-education-project-id': import.meta.env.VITE_API_KEY_NOVI,
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+
+                console.log("Meal planning fetched:", response.data);
+                setRecipes(response.data);
+            } catch (e) {
+                console.error(e);
+                setError(true);
+            }
+        }
+
+        fetchMealPlanning();
+    }, [isAuth, user]);
+
+    const handleDeleteRecipe = async (recipeId) => {
+        try {
+            await axios.delete(
+                `https://novi-backend-api-wgsgz.ondigitalocean.app/api/recipes/${recipeId}`,
+                {
+                    headers: {
+                        'novi-education-project-id': import.meta.env.VITE_API_KEY_NOVI,
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+
+            setRecipes(prev => prev.filter(r => r.id !== recipeId));
+            decrementCount();
+        } catch (e) {
+            console.error("Error deleting recipe:", e);
+        }
+    };
+
+    if (!isAuth) {
+        return (
+            <section className="login-link-container">
+                If you want to make or see your meal planning, please login first.
+                <p className="login-sentence">
+                    If you have an account go to <Link to="/signin"> the login page </Link>.
+                    Otherwise register at the <Link to="/signup"> the registration page </Link>.
+                </p>
+            </section>
+        );
+    }
 
     return (
         <>
             <header className="page-header-mealplanpage">
-                <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
                 <h1>My weekplan</h1>
-                <p>these are the recipes you choose. You can add up to 7 recipes for every day of de week.
-                    If jou want to choose another recipe you can click on the trashcan.</p>
             </header>
 
-            {!isLoggedIn ? (
-                <section className="login-link-container"> If you want to make or see your meal planning, please login
-                    first.
+            <main className="weekplan-section">
+                <article className="weekplan-container">
+                    {recipes.length === 0 ? (
+                        <p>No recipes added yet.</p>
+                    ) : (
+                        recipes.map(recipe => (
+                            <MealCard
+                                key={recipe.id}
+                                title={recipe.title}
+                                imageUrl={recipe.image}
+                                onClick={() => navigate(`/recipe/${recipe.externalRecipeId}`)}
+                                onDelete={() => handleDeleteRecipe(recipe.id)}
+                            />
+                        ))
+                    )}
+                </article>
 
-                    <p className="login-sentence">If you have an account go to<Link
-                        to="/signin"> the inlog page. </Link>
-                        Otherwise register at the<Link
-                            to="/signup"> the registration page.</Link></p>
-                </section>
-            ) : (
-
-
-                <main className="weekplan-section">
-                        <article className="weekplan-container">
-
-                            {selectedRecipes.length === 0 ? (<p>No recipes added yet.</p>) :
-                                (selectedRecipes.map(recipe => (
-                                        <MealCard
-                                            key={recipe.id}
-                                            title={recipe.title}
-                                            image={recipe.image}
-                                            onClick={() => navigate(`/recipe/${recipe.id}`)}
-                                            onDelete={() => handleDeleteRecipe(recipe.id)}
-                                        />
-                                    ))
-                                )}
-
-                        </article>
-
-                    <section className="grocerylist-section">
-                        <h2> Grocery list</h2>
-                        <ul className="ingredient-list">
-                            <li>eif f</li>
-                            <li>eidfg</li>
-                            <li>ei dg</li>
-                            <li>ei dg</li>
-                            <li>ei gdf</li>
-                            <li>eig df</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei dsfvsdrgrgrgrtg rtgrgrt trhrthrts</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                            <li>ei</li>
-                        </ul>
-
-                        {/*<Button*/}
-                        {/*    type="button"*/}
-                        {/*    className="send-grocery-list-button"*/}
-                        {/*    onClick={handleSubmit}>*/}
-                        {/*<span>*/}
-                        {/*    send grocery list to my email address*/}
-                        {/*</span>*/}
-                        {/*</Button>*/}
-
-
-                    </section>
-
-
-                </main>
-
-            )}
+                {error && <p>Er is iets misgegaan bij het ophalen van je meal planning.</p>}
+            </main>
         </>
     );
 }

@@ -1,6 +1,6 @@
-import {createContext, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
+import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import isTokenValid from '../helpers/isTokenValid.js';
 
 export const AuthContext = createContext({});
@@ -12,46 +12,40 @@ function AuthContextProvider({ children }) {
         status: 'pending',
     });
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        if (token) {
+        if (token && isTokenValid(token)) {
             const decodedToken = jwtDecode(token);
-            console.log(decodedToken);
 
-            if (isTokenValid()) {
-                setAuth({
-                    isAuth: true,
-                    user: {
-                        email: decodedToken.email,
-                        roles: decodedToken.role,
-                    },
-                    status: 'done',
-                });
-            } else {
-                logout();
-            }
-
-        } else {
             setAuth({
-                ...auth,
+                isAuth: true,
+                user: {
+                    userId: decodedToken.userId,   // ✅ JUISTE ID
+                    email: decodedToken.email,
+                    roles: decodedToken.role,
+                },
                 status: 'done',
             });
+        } else {
+            logout();
         }
-
     }, []);
 
-
-    const navigate = useNavigate();
-
     function login(userDetails) {
+        // Alleen token opslaan
         localStorage.setItem('token', userDetails.token);
+
+        const decodedToken = jwtDecode(userDetails.token);
 
         setAuth({
             isAuth: true,
             user: {
-                email: userDetails.user.email,
-                roles: userDetails.user.roles
+                userId: decodedToken.userId,  // ✅ UIT TOKEN
+                email: decodedToken.email,
+                roles: decodedToken.role,
             },
             status: 'done',
         });
@@ -71,8 +65,9 @@ function AuthContextProvider({ children }) {
 
     const contextData = {
         isAuth: auth.isAuth,
-        login: login,
-        logout: logout,
+        user: auth.user,
+        login,
+        logout,
     };
 
     return (

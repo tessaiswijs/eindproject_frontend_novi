@@ -1,9 +1,9 @@
 import './MealCard.css'
 
-function MealCard({ onClick, onDelete, title, image }) {
+function MealCard({ onClick, onDelete, title, imageUrl }) {
     return (
         <article className="added-recipe-card" onClick={onClick}>
-            <img className="added-recipe-image" src={image} alt={title}/>
+            <img className="added-recipe-image" src={imageUrl} alt={title}/>
 
 
             <button

@@ -1,33 +1,52 @@
 import './RecipePage.css';
-import {useState, useContext} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
-import {CounterContext} from '../../context/CounterContext.jsx';
+import { CounterContext } from '../../context/CounterContext.jsx';
+import { useContext } from 'react';
 import SpoonacularRecipes from "../../services/api.js";
 import getNutritionInfo from '../../helpers/getNutrient.js';
-import {RecipeContext} from "../../context/RecipeContext.jsx";
-
+import { SavedRecipes } from '../../helpers/SavedRecipes.js';
 
 function Recipe() {
-    const {id} = useParams();
+    const { id } = useParams();
     const endpoint = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
-    const {recipe, loading, error} = SpoonacularRecipes(endpoint);
+    const { recipe, loading, error } = SpoonacularRecipes(endpoint);
 
-    const {incrementCount, count} = useContext(CounterContext);
+    const { incrementCount, count } = useContext(CounterContext);
     const [disabled, setDisabled] = useState(false);
 
-    const {selectedRecipes, addRecipe} = useContext(RecipeContext);
+    const { recipes: savedRecipes, addRecipe: addRecipeToDatabase } = SavedRecipes();
 
     const isAlreadyAdded = recipe
-            ? selectedRecipes.some(r => r.id === recipe.id)
-            : false;
+        ? savedRecipes.some(recipeToAdd => recipeToAdd.externalRecipeId === recipe.externalRecipeId)
+        : false;
 
-    const handleClick = () => {
-        incrementCount();
+    const handleClick = async () => {
+        if (!recipe) {
+            console.log("No recipe loaded yet.");
+            return;
+        }
+
+        if (savedRecipes.length >= 7) {
+            alert("You already added 7 recipes. Remove one first.");
+            return;
+        }
+
         setDisabled(true);
-        addRecipe(recipe);
+        incrementCount();
 
-        console.log("recipe list:", selectedRecipes);
+        try {
+            await addRecipeToDatabase({
+                externalRecipeId: recipe.id,
+                title: recipe.title,
+                image: recipe.image,
+            });
+            console.log("Recipe successfully added to the database");
+            console.log("Updated savedRecipes after adding:", savedRecipes);
+        } catch (e) {
+            console.error("Error adding recipe to database:", e);
+        }
     };
 
     if (loading) return <p className="loading-statement">Loading recipe...</p>;
@@ -36,14 +55,9 @@ function Recipe() {
     return (
         <article className="recipe-description-container">
 
-            {loading && <p>loading recipes...</p>}
-            {error && <p>Oeps.. we where not able to show the recipes</p>}
-
             <section className="general-info-container">
                 <picture className="image-container-recipe-page">
-                    <img className="food-image"
-                         src={recipe.image}
-                         alt={recipe.title}/>
+                    <img className="food-image" src={recipe.image} alt={recipe.title} />
                 </picture>
 
                 <div className="recipe-info-container">
@@ -51,17 +65,17 @@ function Recipe() {
 
                     <div className="recipe-summary">
                         <div className="recipe-summary-item">
-                            <img src="/src/assets/bord_icon.png" alt="plate"/>
+                            <img src="/src/assets/bord_icon.png" alt="plate" />
                             <span>{recipe.servings} portions</span>
                         </div>
 
                         <div className="recipe-summary-item">
-                            <img src="/src/assets/time_icon.png" alt="time"/>
+                            <img src="/src/assets/time_icon.png" alt="time" />
                             <span>{recipe.readyInMinutes} minutes</span>
                         </div>
 
                         <div className="recipe-summary-item">
-                            <img src="/src/assets/kcal_icon.png" alt="calories"/>
+                            <img src="/src/assets/kcal_icon.png" alt="calories" />
                             <span>{getNutritionInfo(recipe, "calories")}</span>
                         </div>
                     </div>
@@ -69,12 +83,9 @@ function Recipe() {
                     <div className="nutrition-info">
                         <p>Nutrition information</p>
                         <span>carbohydrates: {getNutritionInfo(recipe, "carbohydrates")}</span>
-                        <span> protein: {getNutritionInfo(recipe, "protein")}</span>
-                        <span> fat: {getNutritionInfo(recipe, "fat")}</span>
-
-
+                        <span>protein: {getNutritionInfo(recipe, "protein")}</span>
+                        <span>fat: {getNutritionInfo(recipe, "fat")}</span>
                     </div>
-
                 </div>
             </section>
 
@@ -96,30 +107,27 @@ function Recipe() {
                         ))}
                     </ol>
 
-                    {selectedRecipes.length < 7 && (
+                    {savedRecipes.length < 7 ? (
                         <Button
                             type="button"
                             className="add-recipe-button"
                             onClick={handleClick}
-                            disabled={disabled || isAlreadyAdded}>
-                        <span>
-                            {disabled || isAlreadyAdded
-                                ? "Recipe is added" : `Add recipe to weekmenu ${count}/7`}
-                        </span>
+                            disabled={disabled || isAlreadyAdded}
+                        >
+                            <span>
+                                {disabled || isAlreadyAdded
+                                    ? "Recipe is added"
+                                    : `Add recipe to weekmenu ${count}/7`}
+                            </span>
                         </Button>
-                    )}
-
-                    {selectedRecipes.length >= 7 && (
-                        <p className="seven-recipes-added"> You cannot at recipes anymore, because you already added 7
-                            recipes. Go to
-                            <Link to="/mealplanning"> your meal planning </Link>
-                             to see and if you wish to change your added recipes.
+                    ) : (
+                        <p className="seven-recipes-added">
+                            You cannot add more recipes because you already added 7 recipes. Go to
+                            <Link to="/mealplanning"> your meal planning</Link> to see or change your recipes.
                         </p>
                     )}
-
                 </div>
             </section>
-
         </article>
     );
 }
