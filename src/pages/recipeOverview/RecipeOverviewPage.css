@@ -9,9 +9,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 5rem;
+    margin: 0 5rem 5rem 5rem;
 }
 
 .alternative-recipe-article-section {
-    margin: 10rem 0 5rem 0;
+    margin: 10rem 5rem 7rem 5rem;
 }

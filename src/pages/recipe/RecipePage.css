@@ -13,10 +13,6 @@
     flex-wrap: wrap;
 }
 
-/*.general-info-container img {*/
-/*    width: 35rem;*/
-/*}*/
-
 .ingredients-method-container {
     display: flex;
     justify-content: center;
