@@ -3,12 +3,12 @@ import './HomePage.css';
 import RecipeCard from '../../components/recipeCard/RecipeCard.jsx';
 import Button from '../../components/button/Button.jsx';
 import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
-import SpoonacularRecipes from '../../services/api.js';
+import useGetRecipeData from '../../helpers/useGetRecipeData.js';
 
 function Home() {
     const navigate = useNavigate();
     const endpoint = `https://api.spoonacular.com/recipes/random?number=3&tags=main%20course&addRecipeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
-    const {recipe, loading, error} = SpoonacularRecipes(endpoint);
+    const {recipe, loading, error} = useGetRecipeData(endpoint);
     const recipes = recipe?.recipes ?? [];
 
     return (

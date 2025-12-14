@@ -1,34 +1,30 @@
+import getIngredients from '../helpers/getIngredients.js';
+
+function mergeIngredients(groceries, ingredients) {
+    for (const ingredient of ingredients) {
+        const key = ingredient.name.toLowerCase();
+
+        if (!groceries[key]) {
+            groceries[key] = {
+                name: ingredient.name,
+                totalAmount: ingredient.amount,
+                unit: ingredient.unit
+            };
+        } else {
+            groceries[key].totalAmount += ingredient.amount;
+        }
+    }
+}
+
 async function getCombinedGroceryList(recipeIds) {
     const groceries = {};
 
-    for (const id of recipeIds) {
-        const ingredients = await getIngredientsForRecipe(id);
-        for (const ing of ingredients) {
-            const name = ing.name.toLowerCase();
-            const unit = ing.unit;
-            const amount = ing.amount;
+    const allIngredients = await Promise.all(
+        recipeIds.map(id => getIngredients(id))
+    );
 
-            if (groceries[name] && groceries[name].unit === unit) {
-                groceries[name].amount += amount;
-            } else if (groceries[name] && groceries[name].unit !== unit) {
-                const keyWithUnit = `${name}_${unit}`;
-                if (groceries[keyWithUnit]) {
-                    groceries[keyWithUnit].amount += amount;
-                } else {
-                    groceries[keyWithUnit] = {
-                        amount: amount,
-                        unit: unit,
-                        name: ing.name,
-                    };
-                }
-            } else {
-                groceries[name] = {
-                    amount: amount,
-                    unit: unit,
-                    name: ing.name,
-                };
-            }
-        }
+    for (const ingredients of allIngredients) {
+        mergeIngredients(groceries, ingredients);
     }
 
     return groceries;

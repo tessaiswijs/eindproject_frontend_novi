@@ -2,7 +2,7 @@ import './RecipePage.css';
 import { useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
-import SpoonacularRecipes from "../../services/api.js";
+import useGetRecipeData from "../../helpers/useGetRecipeData.js";
 import getNutritionInfo from '../../helpers/getNutrient.js';
 import useSavedRecipes from '../../helpers/useSavedRecipes.js';
 import { AuthContext } from '../../context/AuthContext.jsx';
@@ -10,7 +10,7 @@ import { AuthContext } from '../../context/AuthContext.jsx';
 function Recipe() {
     const { id } = useParams();
     const endpoint = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`;
-    const { recipe, loading, error } = SpoonacularRecipes(endpoint);
+    const { recipe, loading, error } = useGetRecipeData(endpoint);
 
     const [disabled, setDisabled] = useState(false);
     const { isAuth } = useContext(AuthContext);

@@ -1,6 +1,6 @@
-import './QuizQuestion.css'
+import './Checkbox.css'
 
-function QuizQuestion({ name, value, label, checked, onChange }) {
+function Checkbox({ name, value, label, checked, onChange }) {
     return (
         <>
             <label className="custom-checkbox">
@@ -18,4 +18,4 @@ function QuizQuestion({ name, value, label, checked, onChange }) {
     );
 }
 
-export default QuizQuestion;
+export default Checkbox;

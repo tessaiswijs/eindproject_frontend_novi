@@ -1,5 +1,5 @@
 import './QuizPage.css';
-import QuizQuestion from "../../components/quizQuestion/QuizQuestion.jsx";
+import Checkbox from "../../components/checkbox/Checkbox.jsx";
 import Button from "../../components/button/Button.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import handleCheckboxChange from "../../helpers/handleCheckboxChange.js";
@@ -71,7 +71,7 @@ function Quiz() {
                         <fieldset className="quiz-question">
                             <legend>What recipes do you like?</legend>
 
-                            <QuizQuestion
+                            <Checkbox
                                 name="maxReadyTime"
                                 value={20}
                                 label="max. 20 minutes"
@@ -79,7 +79,7 @@ function Quiz() {
                                 onChange={e => handleCheckboxChange(setFormValues,"maxReadyTime", 20, e.target.checked)}
                             />
 
-                            <QuizQuestion
+                            <Checkbox
                                 name="maxCalories"
                                 value={500}
                                 label="max. 500 calories per portion"
@@ -87,7 +87,7 @@ function Quiz() {
                                 onChange={e => handleCheckboxChange(setFormValues,"maxCalories", 500, e.target.checked)}
                             />
 
-                            <QuizQuestion
+                            <Checkbox
                                 name="diet"
                                 value="vegetarian"
                                 label="Vegetarian"
@@ -95,7 +95,7 @@ function Quiz() {
                                 onChange={e => handleCheckboxChange(setFormValues,"diet", "vegetarian", e.target.checked)}
                             />
 
-                            <QuizQuestion
+                            <Checkbox
                                 name="diet"
                                 value="vegan"
                                 label="Vegan"
@@ -103,7 +103,7 @@ function Quiz() {
                                 onChange={e => handleCheckboxChange(setFormValues,"diet", "vegan", e.target.checked)}
                             />
 
-                            <QuizQuestion
+                            <Checkbox
                                 name="diet"
                                 value="pescetarian"
                                 label="No meat, fish is fine"
@@ -116,7 +116,7 @@ function Quiz() {
                             <legend>Add your favorite cuisine</legend>
 
                             {cuisineOptions.map(option => (
-                                <QuizQuestion
+                                <Checkbox
                                     key={option.value}
                                     name="cuisine"
                                     value={option.value}
@@ -131,7 +131,7 @@ function Quiz() {
                             <legend>Do you have allergies?</legend>
 
                             {intoleranceOptions.map(option => (
-                                <QuizQuestion
+                                <Checkbox
                                     key={option.value}
                                     name="intolerances"
                                     value={option.value}
