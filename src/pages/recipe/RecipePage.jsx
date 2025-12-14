@@ -1,10 +1,11 @@
 import './RecipePage.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Button from '../../components/button/Button.jsx';
 import SpoonacularRecipes from "../../services/api.js";
 import getNutritionInfo from '../../helpers/getNutrient.js';
-import { SavedRecipes } from '../../helpers/SavedRecipes.js';
+import useSavedRecipes from '../../helpers/useSavedRecipes.js';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 function Recipe() {
     const { id } = useParams();
@@ -12,8 +13,8 @@ function Recipe() {
     const { recipe, loading, error } = SpoonacularRecipes(endpoint);
 
     const [disabled, setDisabled] = useState(false);
-
-    const { recipes: savedRecipes, addRecipe: addRecipeToDatabase } = SavedRecipes();
+    const { isAuth } = useContext(AuthContext);
+    const { recipes: savedRecipes, addRecipe: addRecipeToDatabase } = useSavedRecipes();
 
     const isAlreadyAdded = recipe
         ? savedRecipes.some(recipeToAdd => recipeToAdd.externalRecipeId === recipe.id)
@@ -108,8 +109,8 @@ function Recipe() {
                             <li key={`${step.number}-${index}`}>{step.step}</li>
                         ))}
                     </ol>
-
-                    {savedRecipes.length < 7 ? (
+                    {isAuth ? (
+                        savedRecipes.length < 7 ? (
                         <Button
                             type="button"
                             className="add-recipe-button"
@@ -126,6 +127,11 @@ function Recipe() {
                         <p className="seven-recipes-added">
                             You cannot add more recipes because you already added 7 recipes. Go to
                             <Link to="/mealplanning"> your meal planning</Link> to see or change your recipes.
+                        </p>
+                        )
+                    ) : (
+                        <p className="seven-recipes-added">
+                            To save recipes <Link to="/signin"> log in </Link> or <Link to="/signup"> register </Link>.
                         </p>
                     )}
                 </div>

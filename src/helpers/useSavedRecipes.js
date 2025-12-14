@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext.jsx';
 
-export function SavedRecipes() {
+export function useSavedRecipes() {
     const { user } = useContext(AuthContext);
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,16 +20,18 @@ export function SavedRecipes() {
             try {
                 setLoading(true);
                 const response = await axios.get(
-                    `https://novi-backend-api-wgsgz.ondigitalocean.app/api/users/${user.userId}/recipes`,
+                    'https://novi-backend-api-wgsgz.ondigitalocean.app/api/recipes',
                     {
                         headers: {
                             'novi-education-project-id': `${import.meta.env.VITE_API_KEY_NOVI}`,
                             'Authorization': `Bearer ${token}`
+                        },
+                        params: {
+                            userId: user.userId,
                         }
                     }
                 );
                 setRecipes(response.data);
-                console.log(response.data);
             } catch (e) {
                 console.error(e);
                 setError(true);
@@ -49,6 +51,7 @@ export function SavedRecipes() {
                 {
                     ...newRecipe,
                     userId: user.userId,
+                    createdAt: new Date().toISOString()
                 },
                 {
                     headers: {
@@ -57,7 +60,6 @@ export function SavedRecipes() {
                     }
                 }
             );
-            console.log("Recipe added:", response.data);
             setRecipes(prev => [...prev, response.data]);
         } catch (e) {
             console.error(e);
@@ -87,4 +89,4 @@ export function SavedRecipes() {
     return { recipes, loading, error, addRecipe, deleteRecipe };
 }
 
-export default SavedRecipes;
+export default useSavedRecipes;

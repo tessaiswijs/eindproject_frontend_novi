@@ -16,7 +16,3 @@ function isTokenValid() {
 
 export default isTokenValid;
 
-
-
-
-// moet nog verder uitgeschreven. -->

@@ -1,4 +1,4 @@
-export default function HandleCheckboxChange(setFormValues, name, value, isChecked) {
+export default function handleCheckboxChange(setFormValues, name, value, isChecked) {
     setFormValues(prevValues => {
         const currentValue = prevValues[name];
 
@@ -17,3 +17,4 @@ export default function HandleCheckboxChange(setFormValues, name, value, isCheck
         }
     });
 }
+

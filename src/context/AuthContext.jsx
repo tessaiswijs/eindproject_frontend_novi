@@ -23,7 +23,7 @@ function AuthContextProvider({ children }) {
             setAuth({
                 isAuth: true,
                 user: {
-                    userId: decodedToken.userId,   // ✅ JUISTE ID
+                    userId: decodedToken.userId,
                     email: decodedToken.email,
                     roles: decodedToken.role,
                 },
@@ -35,7 +35,6 @@ function AuthContextProvider({ children }) {
     }, []);
 
     function login(userDetails) {
-        // Alleen token opslaan
         localStorage.setItem('token', userDetails.token);
 
         const decodedToken = jwtDecode(userDetails.token);
@@ -43,7 +42,7 @@ function AuthContextProvider({ children }) {
         setAuth({
             isAuth: true,
             user: {
-                userId: decodedToken.userId,  // ✅ UIT TOKEN
+                userId: decodedToken.userId,
                 email: decodedToken.email,
                 roles: decodedToken.role,
             },

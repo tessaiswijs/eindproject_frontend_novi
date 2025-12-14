@@ -1,6 +1,4 @@
-
-
-async function combinedGroceryList(recipeIds) {
+async function getCombinedGroceryList(recipeIds) {
     const groceries = {};
 
     for (const id of recipeIds) {
@@ -36,4 +34,4 @@ async function combinedGroceryList(recipeIds) {
     return groceries;
 }
 
-export default combinedGroceryList;
+export default getCombinedGroceryList;

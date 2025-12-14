@@ -1,7 +1,7 @@
-function ExtractCalories(summary) {
+function extractCalories(summary) {
     if (!summary) return null;
     const match = summary.match(/(\d+)\s*calories/i);
     return match ? match[1] : null;
 }
 
-export default ExtractCalories;
+export default extractCalories;

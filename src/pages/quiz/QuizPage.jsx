@@ -2,13 +2,14 @@ import './QuizPage.css';
 import QuizQuestion from "../../components/quizQuestion/QuizQuestion.jsx";
 import Button from "../../components/button/Button.jsx";
 import {Link, useNavigate} from "react-router-dom";
-import HandleCheckboxChange from "../../helpers/HandleCheckboxChange.js";
+import handleCheckboxChange from "../../helpers/handleCheckboxChange.js";
 import { QuizContext } from "../../context/QuizContext.jsx";
 import { useContext, useState } from "react";
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 function Quiz() {
     const navigate = useNavigate();
-    const isLoggedIn = localStorage.getItem("token");
+    const { isAuth } = useContext(AuthContext);
     const { saveQuizData } = useContext(QuizContext);
 
     const cuisineOptions = [
@@ -55,7 +56,7 @@ function Quiz() {
                     <h1>Quiz</h1>
 
                 </section>
-                {!isLoggedIn ? (
+                {!isAuth ? (
                     <section className="login-link-container"> I you want to do the quiz, please login first.
 
                         <p className="login-sentence">If you have an account go to the<Link
@@ -75,7 +76,7 @@ function Quiz() {
                                 value={20}
                                 label="max. 20 minutes"
                                 checked={formValues.maxReadyTime === 20}
-                                onChange={e => HandleCheckboxChange(setFormValues,"maxReadyTime", 20, e.target.checked)}
+                                onChange={e => handleCheckboxChange(setFormValues,"maxReadyTime", 20, e.target.checked)}
                             />
 
                             <QuizQuestion
@@ -83,7 +84,7 @@ function Quiz() {
                                 value={500}
                                 label="max. 500 calories per portion"
                                 checked={formValues.maxCalories === 500}
-                                onChange={e => HandleCheckboxChange(setFormValues,"maxCalories", 500, e.target.checked)}
+                                onChange={e => handleCheckboxChange(setFormValues,"maxCalories", 500, e.target.checked)}
                             />
 
                             <QuizQuestion
@@ -91,7 +92,7 @@ function Quiz() {
                                 value="vegetarian"
                                 label="Vegetarian"
                                 checked={formValues.diet.includes("vegetarian")}
-                                onChange={e => HandleCheckboxChange(setFormValues,"diet", "vegetarian", e.target.checked)}
+                                onChange={e => handleCheckboxChange(setFormValues,"diet", "vegetarian", e.target.checked)}
                             />
 
                             <QuizQuestion
@@ -99,7 +100,7 @@ function Quiz() {
                                 value="vegan"
                                 label="Vegan"
                                 checked={formValues.diet.includes("vegan")}
-                                onChange={e => HandleCheckboxChange(setFormValues,"diet", "vegan", e.target.checked)}
+                                onChange={e => handleCheckboxChange(setFormValues,"diet", "vegan", e.target.checked)}
                             />
 
                             <QuizQuestion
@@ -107,7 +108,7 @@ function Quiz() {
                                 value="pescetarian"
                                 label="No meat, fish is fine"
                                 checked={formValues.diet.includes("pescetarian")}
-                                onChange={e => HandleCheckboxChange(setFormValues,"diet", "pescetarian", e.target.checked)}
+                                onChange={e => handleCheckboxChange(setFormValues,"diet", "pescetarian", e.target.checked)}
                             />
                         </fieldset>
 
@@ -121,7 +122,7 @@ function Quiz() {
                                     value={option.value}
                                     label={option.label}
                                     checked={formValues.cuisine.includes(option.value)}
-                                    onChange={e => HandleCheckboxChange(setFormValues,"cuisine", option.value, e.target.checked)}
+                                    onChange={e => handleCheckboxChange(setFormValues,"cuisine", option.value, e.target.checked)}
                                 />
                             ))}
                         </fieldset>
@@ -136,7 +137,7 @@ function Quiz() {
                                     value={option.value}
                                     label={option.label}
                                     checked={formValues.intolerances.includes(option.value)}
-                                    onChange={e => HandleCheckboxChange(setFormValues,"intolerances", option.value, e.target.checked)}
+                                    onChange={e => handleCheckboxChange(setFormValues,"intolerances", option.value, e.target.checked)}
                                 />
                             ))}
                         </fieldset>
