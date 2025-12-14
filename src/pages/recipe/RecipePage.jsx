@@ -45,8 +45,6 @@ function Recipe() {
                 title: recipe.title,
                 image: recipe.image,
             });
-            console.log("Recipe successfully added to the database");
-            console.log("Updated savedRecipes after adding:", savedRecipes);
         } catch (e) {
             console.error("Error adding recipe to database:", e);
         }

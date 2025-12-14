@@ -8,7 +8,6 @@
 .weekplan-section p {
     margin-bottom: 2rem;
     text-align: center;
-
 }
 
 .weekplan-container {
@@ -19,7 +18,7 @@
 }
 
 /*////////////////////////
-    1. Styling grocery list
+1. Styling grocery list
 ////////////////////////*/
 
 .grocerylist-section {
@@ -33,33 +32,12 @@
     margin: 3rem;
 }
 
-.grocerylist-checkboxes {
-    list-style-type: disc;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 80%;
-}
-
-.grocerylist-checkboxes .custom-checkbox {
-    flex: 1 1 calc(50% - 1rem);
-    box-sizing: border-box;
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-}
-
 .grocerylist-section button {
     margin: 2rem;
 }
 
-@media (max-width: 900px) {
-    .grocerylist-checkboxes {
-        flex-direction: column;
-    }
-}
-
 /*////////////////////////
-    1. Styling alternative content when not logged in
+1. Styling alternative content when not logged in
 ////////////////////////*/
 
 .not-auth-mealplan-container {
@@ -67,7 +45,7 @@
     margin: 10rem 5rem 15rem 5rem;
     text-align: center;
 }
+
 .login-sentence-mealplan-container {
     margin: 2rem 0;
 }
-

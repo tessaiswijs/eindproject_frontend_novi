@@ -43,7 +43,6 @@ function Quiz() {
     ];
 
     const handleSubmit = () => {
-        console.log("Form values submitted:", formValues);
         saveQuizData(formValues);
         navigate("/recipeoverview");
     };
