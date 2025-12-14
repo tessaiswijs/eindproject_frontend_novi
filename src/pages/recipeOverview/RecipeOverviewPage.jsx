@@ -79,7 +79,7 @@ function RecipeOverview() {
                                 title={recipe.title}
                                 image={recipe.image}
                                 time={recipe.readyInMinutes}
-                                kcal={recipe}
+                                kcal={recipe.summary}
                                 onClick={() => navigate(`/recipe/${recipe.id}`)}
                             />
                         ))}

@@ -5,7 +5,7 @@ import Button from '../../components/button/Button.jsx';
 import MealplanSteps from '../../components/mealplanSteps/MealplanSteps.jsx';
 import SpoonacularRecipes from '../../services/api.js';
 
-// hier nog fixen dat het aantal kcal uit de tekst wordt extracted de random? werkt niet hetzelfde als complexSearch
+
 
 function Home() {
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ function Home() {
     const {recipe, loading, error} = SpoonacularRecipes(endpoint);
     const recipes = recipe?.recipes ?? [];
 
-    console.log(recipe)
+    console.log(recipe);
 
     return (
         <>
@@ -28,7 +28,6 @@ function Home() {
                         meals.
                         Start today and experience how simple good eating can be!</p>
                 </div>
-
 
                 <ol className="header-section">
 
@@ -99,7 +98,7 @@ function Home() {
                             title={recipe.title}
                             image={recipe.image}
                             time={recipe.readyInMinutes}
-                            kcal={recipe}
+                            kcal={recipe.summary}
                             onClick={() => navigate(`/recipe/${recipe.id}`)}
                         />
 

@@ -1,5 +1,5 @@
 import './RecipeCard.css'
-import getNutritionInfo from "../../helpers/getNutrient.js";
+import ExtractCalories from "../../helpers/ExtractCalories.js";
 
 function Recipecard({onClick, title, image, time, kcal}) {
     return (
@@ -17,7 +17,7 @@ function Recipecard({onClick, title, image, time, kcal}) {
 
                     <span className="kcal-info">
                     <img className="detail-icon" src="/src/assets/kcal_icon.png" alt="kcal"/>
-                        <span>{getNutritionInfo(kcal, "calories")}</span>
+                        {ExtractCalories(kcal)}
                 </span>
                 </div>
             </article>
