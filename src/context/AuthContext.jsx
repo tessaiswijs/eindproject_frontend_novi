@@ -1,11 +1,11 @@
-import { createContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import {createContext, useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {jwtDecode} from 'jwt-decode';
 import isTokenValid from '../helpers/isTokenValid.js';
 
 export const AuthContext = createContext({});
 
-function AuthContextProvider({ children }) {
+function AuthContextProvider({children}) {
     const [auth, setAuth] = useState({
         isAuth: false,
         user: null,

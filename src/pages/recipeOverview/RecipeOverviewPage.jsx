@@ -1,13 +1,13 @@
 import './RecipeOverviewPage.css';
 import axios from "axios";
-import { useContext, useState, useEffect } from "react";
+import {useContext, useState, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import RecipeCard from "../../components/recipeCard/RecipeCard.jsx";
-import { QuizContext } from "../../context/QuizContext.jsx";
+import {QuizContext} from "../../context/QuizContext.jsx";
 
 function RecipeOverview() {
     const navigate = useNavigate();
-    const { quizData } = useContext(QuizContext);
+    const {quizData} = useContext(QuizContext);
 
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -35,9 +35,9 @@ function RecipeOverview() {
                 params.append('addRecipeNutrition', 'true');
                 params.append('number', '10');
 
-                const { data } = await axios.get(
+                const {data} = await axios.get(
                     `https://api.spoonacular.com/recipes/complexSearch?${params.toString()}&tags=main%20course&apiKey=${import.meta.env.VITE_API_KEY_SPOONACULAIR}`,
-                    { signal: controller.signal }
+                    {signal: controller.signal}
                 );
 
                 setRecipes(data.results || []);
@@ -57,34 +57,39 @@ function RecipeOverview() {
     return (
         <>
             <div className="recipe-overview-container">
-            <section className="recipe-overview-header-section">
-                <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
-                <h1>Recipes based on your preferences</h1>
-            </section>
-
-            {!quizData && (
-                <section className="alternative-recipe-article-section">
-                <p> Do<Link to="/quiz"> the quiz </Link>to see your recipes.</p>
+                <section className="recipe-overview-header-section">
+                    <img className="yellow-logo-container" src="/src/assets/logo_yellow.png" alt="logo"/>
+                    <h1>Recipes based on your preferences</h1>
                 </section>
+
+                {!quizData && (
+                    <section className="alternative-recipe-article-section">
+                        <p> Do<Link to="/quiz"> the quiz </Link>to see your recipes.</p>
+                    </section>
                 )}
 
-            {quizData && (
-            <section className="recipe-article-section">
-                {loading && <p>Loading recipes...</p>}
-                {error && <p>Oeps.. we were not able to show the recipes</p>}
+                {quizData && (
+                    <section className="recipe-article-section">
+                        {loading && <p>Loading recipes...</p>}
+                        {error && <p>Oeps.. we were not able to show the recipes</p>}
 
-                        {recipes.map(recipe => (
-                            <RecipeCard
-                                key={recipe.id}
-                                title={recipe.title}
-                                image={recipe.image}
-                                time={recipe.readyInMinutes}
-                                kcal={recipe.summary}
-                                onClick={() => navigate(`/recipe/${recipe.id}`)}
-                            />
-                        ))}
-            </section>
-            )}
+                        {recipes.length === 0 ? (
+                            <p className="no-recipes-sentence">Sorry, no recipes found based on your preference.
+                                Try to adjust your preferences by doing <Link to="/signin"> the quiz </Link>again.</p>
+                        ) : (
+                            recipes.map(recipe => (
+                                    <RecipeCard
+                                        key={recipe.id}
+                                        title={recipe.title}
+                                        image={recipe.image}
+                                        time={recipe.readyInMinutes}
+                                        kcal={recipe.summary}
+                                        onClick={() => navigate(`/recipe/${recipe.id}`)}
+                                    />
+                                ))
+                        )}
+                    </section>
+                )}
             </div>
         </>
     );

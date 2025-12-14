@@ -90,7 +90,7 @@ function MealPlanning() {
                         {loading ? (
                             <p>Loading your meal planning...</p>
                         ) : recipes.length === 0 ? (
-                            <p>No recipes added yet.</p>
+                            <p>No recipes added yet. Do <Link to="/signin"> the quiz </Link>to add your favorite recipes.</p>
                         ) : (
                             recipes.map(recipe => (
                                 <MealCard
@@ -116,7 +116,7 @@ function MealPlanning() {
                         ) : errorGroceries ? (
                             <p>Er is iets misgegaan bij het ophalen van de grocery list.</p>
                         ) : Object.keys(groceryList).length === 0 ? (
-                            <p>No ingredients yet.</p>
+                            <p>There is no grocery list yet. Add recipes to you weekplan first.</p>
                         ) : (
                             <div className="grocerylist-checkboxes">
                                 {Object.values(groceryList).map(item => (
